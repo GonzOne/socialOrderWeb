@@ -1,5 +1,5 @@
 # Social Order CMS
-This project was generated with a Yeoman generator for AngularJS + Gulp.
+This project was generated with 
  <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank" title="generator-gulp-angular">
  generator-gulp-angular
   </a>
