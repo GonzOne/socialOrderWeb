@@ -60,4 +60,4 @@ http://localhost:3000/
 ## Contributing
 Sole contributor : Manuel Gonzalez
 ## License
-Code licensed under MIT. Docs under Apache 2. PhoneGap is a trademark of Adobe.
+Code licensed under MIT.
