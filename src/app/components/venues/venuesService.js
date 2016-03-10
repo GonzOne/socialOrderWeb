@@ -21,7 +21,6 @@
             if(vData.type ) {
                 vData.type = parseInt(vData.type)
             }
-            //convert string to number
             var newChildRef = venueRef.push();//create key
             vData.key = newChildRef.key();
             newChildRef.set(vData, function (error) {
