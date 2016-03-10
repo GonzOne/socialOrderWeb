@@ -6,7 +6,7 @@
         .module('socialOrderWeb')
         .factory('AuthService', AuthService);
     /** @ngInject */
-    function AuthService($q, $firebaseAuth, KEYS, profileService, $log) {
+    function AuthService($q, $firebaseAuth, KEYS, appGlobalVars, profileService, $log) {
 
         var usersRef = new Firebase(KEYS.firebase);
         var cachedUser = $firebaseAuth(usersRef);
@@ -43,8 +43,11 @@
                     } else {
                         $log.log("Authenticated successfully with payload:", authData);
                         cachedUser =  authData;
+                        appGlobalVars.setUserId(authData.uid);
+                        appGlobalVars.setUserLoggedIn(true);
                         profileService.getMetaProfileById(cachedUser.uid).then(function (data) {
                             userRole = data.role;
+                            appGlobalVars.setUserRole(userRole);
                             $log.log('AuthService is admin :', data.role);
                         }, function (error) {
                             $log.log('Error:', error);
