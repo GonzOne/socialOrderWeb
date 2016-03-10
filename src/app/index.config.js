@@ -6,13 +6,15 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, blockUIConfig, localStorageServiceProvider) {
+  function config($logProvider, cfpLoadingBarProvider, toastrConfig, blockUIConfig, localStorageServiceProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
     //
     blockUIConfig.message = 'loading...';
     //
     localStorageServiceProvider.setPrefix('so_admin');
+    //
+    cfpLoadingBarProvider.includeSpinner = false;
     // Set options third-party lib
     toastrConfig.allowHtml = true;
     toastrConfig.timeOut = 3000;
