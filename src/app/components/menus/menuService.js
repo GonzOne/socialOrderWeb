@@ -12,6 +12,7 @@
         var venueMenusUri = KEYS.firebase + '/venue_menus';
         var venueMenusRef = new Firebase(venueMenusUri);
         var monthNames = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+
         var createMenu = function (mData) {
             var deferred = $q.defer();
             $log.log('create new Menu node ', mData);
@@ -42,6 +43,18 @@
                 }
             })
             return deferred.promise;
+        }
+        var getMenuById = function (k) {
+            var deferred = $q.defer();
+            var venueMenu = venueMenusRef.child(k);
+            venueMenu.once("value", function(snapshot) {
+                    var data = snapshot.val();
+                    deferred.resolve(data);
+                }, function (err) {
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+
         }
         var removeMenuById = function (k) {
             var menu = venueMenusRef.child(k);
@@ -565,6 +578,7 @@
         }
         return {
             createMenu: createMenu,
+            getMenuById: getMenuById,
             removeMenuById: removeMenuById,
             //
             addDraftBeer:addDraftBeer,
