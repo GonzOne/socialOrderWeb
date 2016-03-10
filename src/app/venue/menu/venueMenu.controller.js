@@ -62,44 +62,6 @@
 
         (function initController() {
             gotoAnchor('navTop');
-            /*
-            gotoAnchor('navTop');
-            $log.log('VenueMenuController get profile', appGlobalVars.getVenueId());
-            var vKey = appGlobalVars.getVenueId();
-            venueService.getVenueById(vKey).then(function (data) {
-                $log.log('Retieved Venue :', data);
-                if (data.menu_id != ''){
-                    vm.hasMenu = true;
-                    appGlobalVars.setMenuId(data.menu_id);
-                    $log.log('we have a menu id', data.menu_id);
-                    //add list of items to grids
-                    getDraftBeers();
-                    getCanBeers();
-                    getBottledBeers();
-                    //
-                    getSparklingWines();
-                    getWhiteWines();
-                    getRedWines();
-                    //
-                    getCocktails();
-                } else {
-                    vm.hasMenu = false;
-
-                    $log.log('menu id is empty');
-
-
-                }
-                //display admin grid and menu button if an Admin role is detected
-                if(appGlobalVars.getUserRole() === 0) {
-                    vm.isAdmin = true;
-                }else{
-                    vm.isAdmin = false;
-                }
-
-            }, function (error) {
-                $log.log('Error:', error);
-            })
-            */
             //add list of items to grids
             getDraftBeers();
             getCanBeers();
