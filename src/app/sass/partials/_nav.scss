@@ -1,0 +1,26 @@
+/* =-=-=-= Navigation =-=-=-=-= */
+
+.navbar .brand {
+  max-height: 50px;
+  overflow: visible;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.navbar a.navbar-brand {
+  padding: 0px 15px 0px;
+}
+
+.subnav {
+  margin:0;
+  top: 0px;
+  background-color: rgb(247,247,247);
+  border-bottom: 1px solid #E1E1E1;
+  padding: 8px 0px 0px 0px;
+}
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
