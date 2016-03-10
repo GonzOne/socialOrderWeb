@@ -34,8 +34,7 @@
         function logout () {
           $log.log('AdminNavbarController log out ');
             appGlobalVars.clearSession();
-            Auth.$unauth();
-           $state.go('login');
+           $state.go('logout');
         }
 
     }
