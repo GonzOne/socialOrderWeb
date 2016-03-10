@@ -1,3 +1,4 @@
+
 (function() {
     'use strict';
 
@@ -161,7 +162,7 @@
         }
         var venue_data =  {
             name: '',//venues name eg. Brass Tax
-            type: '',// 0 = bar, 1 = pub, 2 = cafe
+            type: 0,// 0 = bar, 1 = pub, 2 = cafe
             desc: '',//venue desc
             address: '',//venue physical address
             city: '',
