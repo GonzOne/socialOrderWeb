@@ -30,8 +30,17 @@
 
         })
         .state('admin', {
+          'abstract': true,
           url: '/admin',
-          templateUrl: 'app/admin/app/app.html'
+          templateUrl: 'app/admin/app/app.html',
+            resolve: {
+                loggedIn: function(AuthService){
+                    return AuthService.isLoggedIn();
+                },
+                isAdmin: function(AuthService){
+                    return AuthService.isAdmin();
+                }
+            }
         })
         .state('admin.dashboard', {
             url: '/dashboard',
@@ -39,6 +48,7 @@
             templateUrl: 'app/admin/dashboard/dashboard.html',
             controller: 'AdminDashboardController',
             controllerAs: 'adminDashboardController'
+
         })
         .state('admin.profiles', {
             url: '/profiles',
@@ -70,8 +80,14 @@
             controllerAs: 'venueMenuController'
         })
         .state('venue', {
+             'abstract': true,
               url: '/venue',
-              templateUrl: 'app/venue/app/venue.app.html'
+              templateUrl: 'app/venue/app/venue.app.html',
+              resolve: {
+                  isLoggedIn: function (AuthService) {
+                      return AuthService.isLoggedIn();
+                  }
+              }
          })
          .state('venue.dashboard', {
               url: '/dashboard',
@@ -114,7 +130,18 @@
               templateUrl: 'app/venue/menu/venue.menu.html',
               controller: 'VenueMenuController',
               controllerAs: 'venueMenuController'
-          });
+          }).
+            state('logout', {
+                url: '/',
+                templateUrl: 'app/main/main.html',
+                controller: 'MainController',
+                controllerAs: 'mainController',
+                resolve: {
+                    logout: function(AuthService){
+                        AuthService.logout();
+                    }
+                }
+            });
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
   }
