@@ -6,9 +6,10 @@
         .controller('VenueMenuController', VenueMenuController);
 
     /** @ngInject */
-    function VenueMenuController($state, $location, $anchorScroll, dataTemplates, appGlobalVars, menuService, venueService, blockUI, $uibModal,  $log) {
+    function VenueMenuController(menu, role, $state, $location, $anchorScroll, dataTemplates, appGlobalVars, menuService, venueService, blockUI, $uibModal,  $log) {
         var vm = this;
-        vm.hasMenu;
+        vm.menu = menu;
+        vm.role = role;
         vm.draftBeers;
         vm.canBeers;
         vm.bottleBeers;
@@ -46,14 +47,22 @@
             {label: 'Cocktails', style:'btn btn-primary', action:'cocktails', icon:false, iconStyle:''}
         ]
         //export
-        vm.createMenu = createMenu;
+        //vm.createMenu = createMenu;
         vm.updateGrid = updateGrid;
         vm.editBeerRow = editBeerRow;
         vm.editWineRow = editWineRow;
         vm.editCocktailRow = editCocktailRow;
         vm.gotoAnchor = gotoAnchor;
+        $log.log('VenueMenuController : menu ', menu, 'role ', role);
+        if(vm.role === 0) {
+            vm.isAdmin = true;
+        }else{
+            vm.isAdmin = false;
+        }
 
         (function initController() {
+            gotoAnchor('navTop');
+            /*
             gotoAnchor('navTop');
             $log.log('VenueMenuController get profile', appGlobalVars.getVenueId());
             var vKey = appGlobalVars.getVenueId();
@@ -90,6 +99,17 @@
             }, function (error) {
                 $log.log('Error:', error);
             })
+            */
+            //add list of items to grids
+            getDraftBeers();
+            getCanBeers();
+            getBottledBeers();
+            //
+            getSparklingWines();
+            getWhiteWines();
+            getRedWines();
+            //
+            getCocktails();
 
         })();
         function gotoAnchor (val){
@@ -215,8 +235,8 @@
             }
         }
         function getDraftBeers() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getDraftBeersByMenuId(m).then(function (draftBeerList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getDraftBeersByMenuId(vm.menu.menu_id).then(function (draftBeerList) {
                 $log.log('getDraftBeersByVenueId returned ', draftBeerList)
                 vm.draftBeers = draftBeerList;
             }, function (error) {
@@ -225,8 +245,8 @@
             })
         }
         function getCanBeers() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getCanBeersByMenuId(m).then(function (canBeerList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getCanBeersByMenuId(vm.menu.menu_id).then(function (canBeerList) {
                 $log.log('getCanBeersByMenuId returned ', canBeerList)
                 vm.canBeers = canBeerList;
             }, function (error) {
@@ -235,8 +255,8 @@
             })
         }
         function getBottledBeers() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getBottleBeersByMenuId(m).then(function (bottleBeerList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getBottleBeersByMenuId(vm.menu.menu_id).then(function (bottleBeerList) {
                 $log.log('getBottleBeersByMenuId returned ', bottleBeerList)
                 vm.bottleBeers = bottleBeerList;
             }, function (error) {
@@ -245,8 +265,8 @@
             })
         }
         function getSparklingWines() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getSparklingWineByMenuId(m).then(function (sparklingWineList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getSparklingWineByMenuId(vm.menu.menu_id).then(function (sparklingWineList) {
                 $log.log('getSparklingWineByMenuId returned ', sparklingWineList)
                 vm.sparklingwine = sparklingWineList;
             }, function (error) {
@@ -255,8 +275,8 @@
             })
         }
         function getWhiteWines() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getWhiteWineByMenuId(m).then(function (whiteWineList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getWhiteWineByMenuId(vm.menu.menu_id).then(function (whiteWineList) {
                 $log.log('getWhiteWineByMenuId returned ', whiteWineList)
                 vm.whitewine = whiteWineList;
             }, function (error) {
@@ -265,8 +285,8 @@
             })
         }
         function getRedWines() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getRedWineByMenuId(m).then(function (redWineList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getRedWineByMenuId(vm.menu.menu_id).then(function (redWineList) {
                 $log.log('getRedWineByMenuId returned ', redWineList)
                 vm.redwine = redWineList;
             }, function (error) {
@@ -275,8 +295,8 @@
             })
         }
         function getCocktails() {
-            var m = appGlobalVars.getMenuId();
-            menuService.getCocktailsByMenuId(m).then(function (cocktailList) {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getCocktailsByMenuId(vm.menu.menu_id).then(function (cocktailList) {
                 $log.log('getCocktailsByMenuId returned ', cocktailList)
                 vm.cocktails  = cocktailList;
             }, function (error) {
@@ -284,6 +304,7 @@
                 $log.log('getRedWineByMenuId ', error)
             })
         }
+        /*
         function addMenuIdToVenue (m_id) {
             $log.log('add menu key : ', m_id, 'to venue : ', appGlobalVars.getVenueId() );
             venueService.setVenueMenu(appGlobalVars.getVenueId(), m_id).then(function () {
@@ -319,5 +340,6 @@
 
             }
         }
+        */
     }
 })();
