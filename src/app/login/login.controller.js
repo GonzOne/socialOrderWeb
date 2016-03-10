@@ -5,12 +5,12 @@
         .module('socialOrderWeb')
         .controller('LoginController', LoginController);
 
-    function LoginController(tokenAuth, $state, Auth, appGlobalVars, profileService, blockUI, $log) {
+    function LoginController(AuthService, tokenAuth, $state, Auth, appGlobalVars, profileService, blockUI, $log) {
         var vm = this;
         vm.alerts =[];
         vm.user = {
-            email: '',
-            password: ''
+            "email": '',
+            "password": ''
         };
         //export
         vm.login = login;
@@ -108,6 +108,14 @@
         function login() {
             blockUI.start();
             vm.dataLoading = true;
+            AuthService.loginWithPW(vm.user).then(function (authData){
+                loginSuccesfull(authData);
+            }, function (errorMsg){
+                vm.alerts.push({ type: 'danger', msg: errorMsg });
+                blockUI.stop();
+                vm.dataLoading = false;
+            });
+            /*
             $log.log('log in called', vm.user.email, vm.user.password)
             Auth.$authWithPassword(vm.user).then(function (authData) {
                 $log.log('auth ', authData);
@@ -135,6 +143,7 @@
                 blockUI.stop();
                 vm.dataLoading = false;
             });
+            */
         }
     }
 
