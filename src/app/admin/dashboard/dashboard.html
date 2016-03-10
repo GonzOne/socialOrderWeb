@@ -54,9 +54,25 @@
             <rd-widget-body classes="medium no-padding">
                 <div class="table-responsive">
                     <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th>Edit</th>
+                            <th>Name</th>
+                            <th>Venue ID</th>
+                            <th>Active</th>
+                        </tr>
+                        </thead>
                         <tbody>                                                                                                                  <!-- ng-class="autoScroll ? 'icon-autoscroll' : 'icon-autoscroll-disabled'"> -->
                         <tr ng-repeat="item in adminDashboardController.lastTenEntries">
-                            <td>{{item.name}}</td><td>{{item.address}}</td>
+                            <td>{{$index + 1}}</td>
+                            <td>
+                                <a href="#" ng-click="adminDashboardController.editVenue(item.key)">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                            </td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.key}}</td>
                             <td>
                                 <span ng-class="item.active == 1  ? 'text-success' : 'text-danger'">
                                 <i ng-class="item.active == 1 ? 'fa fa-check' : 'fa fa-warning'"></i>

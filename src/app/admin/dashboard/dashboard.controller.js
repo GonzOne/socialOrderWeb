@@ -6,15 +6,18 @@
         .controller('AdminDashboardController', AdminDashboardController);
 
     /** @ngInject */
-    function AdminDashboardController(venueService, profileService,  $log) {
+    function AdminDashboardController($state, blockUI,  appGlobalVars, venueService, profileService,  $log) {
         var vm = this;
+        vm.sortType = 'role';
+        vm.sortReverse  = false;
+        vm.searchUsers = '';
         vm.venueCount;
         vm.lastEntries;
         vm.staffCount;
         vm.usersCount;
         vm.lastUserRegistrations = [];
         //export
-
+        vm.editVenue =  editVenue;
         (function initController() {
             $log.log('AdminDashboardController init', vm)
             $log.log('AdminVenuesController init');
@@ -22,18 +25,15 @@
                 //$log.log('Retieved Venues :', data);
                 vm.venueCount = data.length;
                 vm.lastTenEntries = data.slice(data.length - 10, data.length);
-                $log.log('lastTenEntries ', vm.lastTenEntries)
+                $log.log('lastTenEntries ', vm.lastTenEntries);
             }, function (error) {
                 $log.log('Error:', error);
             })
             createSystemUserList();
-
-
-
-
-
-
         })();
+        function editVenue(key) {
+            $state.go('admin.detail', {venueId: key});
+        }
         function addToUserArray (inArray) {
             var len = inArray.length;
             for (var i = 0; i < len; i++) {
