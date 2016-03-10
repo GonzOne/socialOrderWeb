@@ -6,8 +6,9 @@
         .controller('VenueDetailController', VenueDetailController);
 
     /** @ngInject */
-    function VenueDetailController($state, $previousState, $timeout, $location, $anchorScroll, $uibModal,  profileService, menuService, appGlobalVars, venueService, dataTemplates, usStatesOptions, Upload, KEYS, blockUI, $log) {
+    function VenueDetailController(venue, role, $state, $previousState, $timeout, $location, $anchorScroll, $uibModal,  profileService, menuService, appGlobalVars, venueService, dataTemplates, usStatesOptions, Upload, KEYS, blockUI, $log) {
         var vm = this;
+        vm.venue = venue;
         vm.states = usStatesOptions.getStatesOptions();
         vm.error = false;
         vm.deleteEnabled = false;
@@ -45,6 +46,7 @@
             {label: 'Staff', style:'btn btn-primary', action:'staff', icon:false, iconStyle:''},
             {label: 'Menu', style:'btn btn-primary', action:'menu', icon:false, iconStyle:''}];
 
+        vm.submitType = 'Update';
         //export
         vm.saveData = saveData;
         vm.editVenueAdminRow = editVenueAdminRow;
@@ -57,30 +59,46 @@
         vm.displayPlace = displayPlace;
         vm.uploadFiles = uploadFiles;
         vm.closeAlert = closeAlert;
+        $log.log('init venue detail controller : venue ', venue, 'role ', role);
 
+        if(role === 0) {
+            vm.isAdmin = true;
+            vm.deleteEnabled = true;
+        }else{
+            vm.isAdmin = false;
+        }
+
+        if (vm.venue.menu_id  != ''){
+            $log.log('venue has menu ');
+            vm.menuActive = true;
+
+        }else {
+            $log.log('venue does not have a  menu ');
+            vm.menuActive = false;
+        }
         (function initController() {
             gotoAnchor('navTop');
-            $log.log('init venue detail controller get venue id ', appGlobalVars.getVenueId());
-            if (!appGlobalVars.getVenueId()) {
-                $log.log('we dont have a venue id yet')
-                vm.submitType = 'Save';
-                vm.venue = dataTemplates.getVenueTmpl();
-                //not needed for MVP come back to when necessary
-               // vm.hours = dataTemplates.getVenueHoursTmpl();
-                vm.menuActive = false;
-            } else {
-                $log.log('we have a venue id ', appGlobalVars.getVenueId())
-                vm.submitType = 'Update';
-                getVenue ();
-                vm.deleteEnabled = true;
-            }
-            //display admin grid and menu button if an Admin role is detected
-            if(appGlobalVars.getUserRole() === 0) {
-                vm.isAdmin = true;
-            }else{
-                vm.isAdmin = false;
-            }
+            if (typeof vm.venue.admin != 'undefined'){
+                venueService.getVenueAdminListById(vm.venue.key).then(function (data) {
+                    $log.log('admin list', data)
+                    createAdminList(data)
+                }, function (error) {
+                    $log.log('Error:', error);
+                })
 
+            }
+            if (typeof vm.venue.staff != 'undefined'){
+                venueService.getVenueStaffListById(vm.venue.key).then(function (data) {
+                    $log.log('staff list', data)
+                    createStaffList(data)
+                }, function (error) {
+                    $log.log('Error:', error);
+                })
+
+            }
+            if (vm.venue.photo_url) {
+                vm.venuePic = vm.venue.photo_url;
+            }
 
         })();
 
@@ -143,8 +161,8 @@
                   removeVenueStaff();
 
                 }
-                venueService.removeVenueById(appGlobalVars.getVenueId());
-                appGlobalVars.clearVenue();
+                venueService.removeVenueById(vm.venue.key);
+                //appGlobalVars.clearVenue();
             }
             $state.go('admin.venues')
         }
@@ -184,60 +202,39 @@
         function editVenueStaffRow(grid, row) {
             $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
         }
-        function getVenue (){
-            var vKey =  appGlobalVars.getVenueId();
-            $log.log('VenueDetailController - getVenue : vKey ',vKey);
-            venueService.getVenueById(vKey).then(function (data) {
-                $log.log('getVenue - Retrieved venue :', data);
-                vm.venue = data;
-                //vm.selectedItem = data.active;
-                $log.log('vm.selectedItem ', vm.selectedItem)
-
-                if (typeof data.admin != 'undefined'){
-                    $log.log('admin ',data.admin);
-                    venueService.getVenueAdminListById(vKey).then(function (data) {
-                        $log.log('admin list', data)
-                        createAdminList(data)
-                    }, function (error) {
-                        $log.log('Error:', error);
-                    })
-
-                }
-                $log.log('has menu ', data.menu_id )
-                //display edit or add button for menu
-                if (data.menu_id  != ''){
-                    $log.log('venue has menu ', data.menu_id );
-                    vm.menuActive = true;
-
-                }else {
-                    $log.log('venue does not have a  menu ', data.menu_id );
-                    vm.menuActive = false;
-                }
-
-                //display staff
-                if (typeof data.staff != 'undefined'){
-                    $log.log('staff ',data.staff);
-                    venueService.getVenueStaffListById(vKey).then(function (data) {
-                        $log.log('staff list', data)
-                        createStaffList(data)
-                    }, function (error) {
-                        $log.log('Error:', error);
-                    })
-
-                }
-                if (data.photo_url) {
-                    vm.venuePic = data.photo_url;
-                }
-
+        function addMenuIdToVenue (m_id) {
+            $log.log('add menu key : ', m_id, 'to venue : ', vm.venue.key);
+            venueService.setVenueMenu(vm.venue.key, m_id).then(function () {
+                $log.log('addMenuIdToVenue : successfull');
+                vm.menuActive = true;
+                blockUI.stop();
+                $state.go('admin.menu', {menuId: m_id});
             }, function (error) {
-                $log.log('Error:', error);
+                blockUI.stop();
+                $log.log('addMenuIdToVenue : returned ', error);
+                //display message
             })
+
         }
         function addMenu(){
-            $state.go('admin.menu');
+            //$state.go('admin.menu');
+            blockUI.start();
+            var tmpl = dataTemplates.getVenueMenuTmpl();
+            tmpl.venue_id = vm.venue.key;
+            tmpl.menu =  dataTemplates.getMenuTmpl();
+            $log.log('createMenu for venue : ', tmpl.venue_id, ' menu obj : ', tmpl);
+            menuService.createMenu(tmpl).then(function (m_id) {
+                $log.log('menu created successfuly: key - ',m_id);
+                addMenuIdToVenue(m_id);
+            }, function (error) {
+                vm.dataLoading = false;
+                blockUI.stop();
+                $log.log('menu returned ', error);
+                //display message
+            })
         }
         function editMenu(){
-            $state.go('admin.menu');
+            $state.go('admin.menu', {menuId: vm.venue.menu_id});
         }
         function createStaffList(inArray) {
             $log.log('createStaffList in Array ', inArray)
@@ -278,13 +275,14 @@
             }
 
         }
+        /*
         function createVenue () {
             $log.log('createVenue ', vm.venue)
             venueService.createVenue(vm.venue).then(function (v_id) {
                 $log.log('venue created successfuly',v_id);
                 appGlobalVars.setVenueId(v_id);
                 blockUI.stop();
-                getVenue();
+                //getVenue();
                 vm.submitType = 'Update';
                 vm.deleteEnabled = true;
             }, function (error) {
@@ -295,6 +293,7 @@
             })
 
         }
+        */
         function gotoAnchor (val){
             $log.log('gotoAnchor ', val)
             if(val === 'back') {
@@ -310,11 +309,12 @@
         function saveData () {
             $log.log('saveData called');
             blockUI.start();
-            if (!appGlobalVars.getVenueId()) {
-                $log.log('no venue asscociation');
-                createVenue();
-            } else {
+            //if (!appGlobalVars.getVenueId()) {
+            //    $log.log('no venue asscociation');
+                //createVenue();
+           // } else {
                 $log.log('save data', vm.venue);
+            /*
                 var updateObj = {
                     name: vm.venue.name,
                     type: vm.venue.type,
@@ -333,12 +333,13 @@
                     facebook_url: vm.venue.facebook_url,
                     active: vm.venue.active
                 }
-                venueService.updateVenueDetails(appGlobalVars.getVenueId(), updateObj).then(function () {
+                */
+                venueService.updateVenueDetails(vm.venue.key, vm.venue).then(function () {
                     blockUI.stop();
                 }, function (error) {
                     $log.log('Error:', error);
                 })
-            }
+            //}
         }
 
         function uploadFiles () {
