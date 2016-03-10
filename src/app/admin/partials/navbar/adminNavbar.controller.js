@@ -12,17 +12,7 @@
         //export
         vm.logout = logout;
         (function initController() {
-            /*
-            var user = profileService.getAdminProfile(appGlobalVars.getUserId());
-            user.$loaded()
-                .then(function (data) {
-                    $log.log('Retieved user Profile :', data);
-                    vm.username = data.firstName;
-                })
-                .catch(function (error) {
-                    $log.log('Error:', error);
-                });
-            */
+            //refactor service to only return username
             profileService.getAdminProfileById(appGlobalVars.getUserId()).then(function (data) {
                 $log.log('Retieved user Profile :', data);
                 vm.username = data.firstName;
