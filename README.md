@@ -50,11 +50,12 @@ Everything else you need will be installed using:
 ```sh
 npm install 
 
-open web browser :
-http://localhost:3000/
-
 ### Run
 gulp serve
+
+open web browser :
+
+http://localhost:3000/
 
 ## Contributing
 Sole contributor : Manuel Gonzalez
