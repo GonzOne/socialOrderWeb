@@ -12,15 +12,12 @@ Development:
   <a href="http://yeoman.io/" target="_blank" alt="yeoman" title="yeoman">
     <img height="100" src="https://cloud.githubusercontent.com/assets/1370779/6041228/c1f91cac-ac7a-11e4-9c85-1a5298e29067.png">
   </a>
-  <br>
   <a href="http://gulpjs.com/" target="_blank" alt="gulp" title="gulp">
     <img height="100" src="https://cloud.githubusercontent.com/assets/1370779/9409728/c5332474-481c-11e5-9a6e-74641a0f1782.png">
   </a>
-  <br>
   <a href="http://bower.io/" target="_blank" alt="bower" title="bower">
     <img height="100" src="https://cloud.githubusercontent.com/assets/1370779/6041250/ef9a78b8-ac7a-11e4-9586-7e7e894e201e.png">
   </a>
-  <br>
   <a href="https://angularjs.org/" target="_blank" alt="angular" title="angular">
     <img height="100" src="https://cloud.githubusercontent.com/assets/1370779/6041199/5978cb96-ac7a-11e4-9568-829e2ea4312f.png">
   </a>
