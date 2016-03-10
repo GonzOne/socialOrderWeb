@@ -10,7 +10,7 @@
 
         var usersRef = new Firebase(KEYS.firebase);
         var cachedUser = $firebaseAuth(usersRef);
-        var userRole;
+        var userMetaData;
 
         function getUser() {
             return cachedUser || usersRef.getAuth();
@@ -46,9 +46,8 @@
                         appGlobalVars.setUserId(authData.uid);
                         appGlobalVars.setUserLoggedIn(true);
                         profileService.getMetaProfileById(cachedUser.uid).then(function (data) {
-                            userRole = data.role;
-                            appGlobalVars.setUserRole(userRole);
-                            $log.log('AuthService is admin :', data.role);
+                            userMetaData = data;
+                            appGlobalVars.setUserRole(data.role);
                         }, function (error) {
                             $log.log('Error:', error);
                         });
@@ -64,9 +63,8 @@
             return true;
         }
         function isAdmin() {
-            $log.log('isAdmin ', userRole)
             var bool = false;
-            if(userRole === 0){
+            if(userMetaData.role === 0){
                 bool = true;
             }
            return bool;
@@ -74,7 +72,9 @@
         return {
             loginWithPW: loginWithPW,
             getUser: getUser,
-            getUserRole: function () {return userRole;},
+            getUserMeta: function () { return userMetaData;},
+            getUserRole: function () {return userMetaData.role;},
+            getUserVenueId: function() { return userMetaData.venue_id;},
             isLoggedIn: isLoggedIn,
             logout: logout,
             isAdmin: isAdmin

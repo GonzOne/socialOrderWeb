@@ -6,7 +6,7 @@
         .controller('VenueStaffController', VenueStaffController);
 
     /** @ngInject */
-    function VenueStaffController(appGlobalVars, dataTemplates, venueService, profileService, Auth, blockUI, uiGridConstants, $log) {
+    function VenueStaffController(admin, staff, appGlobalVars, dataTemplates, venueService, profileService, Auth, blockUI, uiGridConstants, $log) {
         var vm = this;
         vm.venueAdminColumnDef = [
             { field: 'id', name: '', cellTemplate: 'app/admin/partials/buttons/edit-venue-detail-admin-button.html', width: 34 },
@@ -27,16 +27,8 @@
         vm.updateGrid = updateGrid;
 
         (function initController() {
-
-            $log.log('init venue detail controller get venue id ', appGlobalVars.getVenueId());
-            if (!appGlobalVars.getVenueId()) {
-                $log.log('we dont have a venue id yet')
-            } else {
-                $log.log('we have a venue id ', appGlobalVars.getVenueId())
-
-                getVenue();
-            }
-
+            createAdminList(admin);
+            createStaffList(staff);
         })();
         function editVenueAdminRow(grid, row) {
             $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
@@ -45,6 +37,7 @@
         function editVenueStaffRow(grid, row) {
             $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
         }
+        /*
         function getVenue (){
             var vKey =  appGlobalVars.getVenueId();
             $log.log('VenueDetailController - getVenue : vKey ',vKey);
@@ -87,6 +80,7 @@
                 $log.log('Error:', error);
             })
         }
+        */
         function createStaffList(inArray) {
             $log.log('createStaffList in Array ', inArray)
             vm.venueStaff = [];

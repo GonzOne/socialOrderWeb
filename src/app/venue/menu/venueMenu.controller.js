@@ -62,6 +62,7 @@
 
         (function initController() {
             gotoAnchor('navTop');
+            $log.log('initController venue menu ', vm.menu);
             //add list of items to grids
             getDraftBeers();
             getCanBeers();
@@ -78,7 +79,7 @@
             $log.log('gotoAnchor ', val)
             if(val === 'back') {
                 if(appGlobalVars.getUserRole() === 0) {
-                     $state.go('admin.detail');
+                     $state.go('admin.detail', {venueId:vm.menu.venue_id });
                 }
 
             } else {

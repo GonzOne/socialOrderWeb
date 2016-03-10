@@ -8,6 +8,7 @@
 
     /** @ngInject */
     function dataTemplates() {
+
         var waitStaffTmpl = {
             uid: '',
             firstName: '',
@@ -15,7 +16,8 @@
             email: '',
             profilePicUrl :'',
             venues: '',
-            channel_id: ''
+            channel_id: '',
+            profile_id: ''
         };
         var patronsTmpl = {
             uid: '',
@@ -46,7 +48,8 @@
         }
         var profileMetaTmpl = {
             uid: '',
-            role: ''
+            role: '',
+            venue_id:''
         }
         var venueMenuTmpl = {
             venueName: '',

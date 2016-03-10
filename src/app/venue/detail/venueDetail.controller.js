@@ -78,6 +78,7 @@
         }
         (function initController() {
             gotoAnchor('navTop');
+
             if (typeof vm.venue.admin != 'undefined'){
                 venueService.getVenueAdminListById(vm.venue.key).then(function (data) {
                     $log.log('admin list', data)
@@ -384,7 +385,7 @@
         }
         function updateGrid (val) {
             $log.log('venueDetailController : updateGrid ', val)
-            var vKey =  appGlobalVars.getVenueId();
+            var vKey =  vm.venue.key;
             switch (val) {
                 case 'venue_admin':
 

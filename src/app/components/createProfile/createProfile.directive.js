@@ -15,6 +15,7 @@
             controllerAs: 'vm',
             bindToController: {
                 creationType: '=',
+                venueId: '=',
                 ctrlFn: '&'
             }
         };
@@ -69,7 +70,7 @@
                             staffTmpl.firstName = vm.user.firstName,
                             staffTmpl.lastName = vm.user.lastName,
                             staffTmpl.email = vm.user.email
-                        var venue =  appGlobalVars.getVenueId();
+                        var venue =  vm.venueId;
                         profileService.createStaffProfile(staffTmpl).then(function (uid) {
                             $log.log('staff profile created',uid);
                             //add staff member to venue array
@@ -105,35 +106,6 @@
                         break;
                     case 3://venue admin
                         createVenueAdminProfile(uid);
-                        /*
-                        var venueTmpl = dataTemplates.getVenueAdminTmpl();
-                            venueTmpl.uid = uid,
-                            venueTmpl.firstName =  vm.user.firstName,
-                            venueTmpl.lastName = vm.user.lastName,
-                            venueTmpl.email = vm.user.email,
-                            profileService.createVenueAdminProfile(venueTmpl).then(function (uid) {
-                                $log.log('venue admin profile created',uid);
-                                //add new admin to venue
-                                venueService.setVenueAdmin(appGlobalVars.getVenueId(), uid).then(function (k) {
-                                    $log.log('setVenueAdmin - Returned staff key :', k);
-                                    blockUI.stop();
-                                    vm.dataLoading = false;
-                                    vm.isToggled = false;
-                                    resetForm();
-                                }, function (error) {
-                                    $log.log('Error:', error);
-                                    blockUI.stop();
-                                    vm.dataLoading = false;
-                                    //display error
-                                })
-
-                            }, function (error) {
-                                blockUI.stop();
-                                vm.dataLoading = false;
-                                $log.log('createProfile returned ', error);
-                                //display dialog
-                            })
-                         */
                         break;
                     default:
                         break;
@@ -141,16 +113,9 @@
 
             }
             function addAdminProfileToVenue(uid){
-                venueService.setVenueAdmin(appGlobalVars.getVenueId(), uid).then(function (k) {
+                venueService.setVenueAdmin(vm.venueId, uid).then(function (k) {
                     $log.log('setVenueAdmin - Returned staff key :', k);
                     addVenueIDToAdminProfile(uid);
-                    /*
-                    blockUI.stop();
-                    vm.dataLoading = false;
-                    vm.isToggled = false;
-                    resetForm();
-                    vm.ctrlFn({value : 'venue_staff'});
-                    */
                 }, function (error) {
                     $log.log('Error:', error);
                     blockUI.stop();
@@ -166,6 +131,7 @@
                     blockUI.stop();
                     vm.dataLoading = false;
                     vm.isToggled = false;
+                    vm.ctrlFn({value : 'venue_admin'});
                     resetForm();
                 }, function (error) {
                     $log.log('Error:', error);
@@ -179,29 +145,13 @@
 
             function createVenueAdminProfile(uid) {
                 var venueTmpl = dataTemplates.getVenueAdminTmpl();
-                venueTmpl.uid = uid,
+                    venueTmpl.uid = uid,
                     venueTmpl.firstName =  vm.user.firstName,
                     venueTmpl.lastName = vm.user.lastName,
                     venueTmpl.email = vm.user.email,
                     profileService.createVenueAdminProfile(venueTmpl).then(function (uid) {
                         $log.log('venue admin profile created',uid);
                         addAdminProfileToVenue(uid);
-                        vm.ctrlFn({value : 'venue_admin'});
-                        //add new admin to venue
-                        /*
-                        venueService.setVenueAdmin(appGlobalVars.getVenueId(), uid).then(function (k) {
-                            $log.log('setVenueAdmin - Returned staff key :', k);
-                            blockUI.stop();
-                            vm.dataLoading = false;
-                            vm.isToggled = false;
-                            resetForm();
-                        }, function (error) {
-                            $log.log('Error:', error);
-                            blockUI.stop();
-                            vm.dataLoading = false;
-                            //display error
-                        })
-                        */
 
                     }, function (error) {
                         blockUI.stop();
@@ -212,9 +162,11 @@
             }
             function createMetaProfile(uid) {
                 var metaProfile = dataTemplates.getMetaTmpl();
-                $log.log('createMetaProfile : metaProfile tmpl before adjusting', metaProfile)
                 metaProfile.uid = uid;
                 metaProfile.role = vm.creationType;
+                if (vm.creationType === 3 ) {
+                    metaProfile.venue_id = vm.venueId;
+                }
                 $log.log('createMetaProfile called : ',metaProfile)
                 profileService.createMetaProfile(metaProfile).then(function (uid) {
                     $log.log('meta profile created',uid);

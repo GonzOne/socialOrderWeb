@@ -69,7 +69,7 @@
                     break
                 case 3: // venue admin
                     $log.log('user is a venue admin - load up venue dashboard');
-                    $state.go('venue.dashboard');
+                    $state.go('venue.dashboard', {venueId: AuthService.getUserVenueId()});
                     break;
                 default ://error page
             }

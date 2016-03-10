@@ -21,17 +21,6 @@
                 $log.log('Error:', error);
 
             })
-            /*
-            user.$loaded()
-                .then(function (data) {
-                    $log.log('VenueNavbarController - Retieved owner Profile :', data);
-                    vm.username = data.firstName;
-                })
-                .catch(function (error) {
-                    $log.log('Error:', error);
-                });
-                */
-
         })();
         function logout () {
             $log.log('VenueNavbarController log out ');

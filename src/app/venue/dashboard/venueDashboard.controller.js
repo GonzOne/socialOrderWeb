@@ -6,11 +6,17 @@
         .controller('VenueDashboardController', VenueDashboardController);
 
     /** @ngInject */
-    function VenueDashboardController(appGlobalVars, profileService, $log) {
+    function VenueDashboardController(venue, appGlobalVars, profileService, $log) {
         var vm = this;
+        vm.venue = venue;
 
         (function initController() {
+            $log.log('VenueDashboardController : venue id : ', venue);
+            //for now this assists the sidebar to navigate to its route passing in keys
+            appGlobalVars.setVenueId(vm.venue.key);
+            appGlobalVars.setMenuId(vm.venue.menu_id);
 
+             /*
             $log.log('init VenueDashboardController get user profile');
             var uid = appGlobalVars.getUserId();
             profileService.getVenueAdminProfileById(uid).then(function (data) {
@@ -30,6 +36,7 @@
             }, function (error) {
                 $log.log('createAdminList returned error : ', error);
             })
+            */
             /*
             var userProfile =  profileService.getVenueAdminProfile(appGlobalVars.getUserId());
             userProfile.$loaded()

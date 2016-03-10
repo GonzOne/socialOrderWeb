@@ -7,7 +7,7 @@
     </li>
     <li class="sidebar-title"><span>NAVIGATION</span></li>
     <li class="sidebar-list" ng-repeat="item in venueSidebarController.menuItems">
-        <a ui-sref="{{item.route}}">{{item.label}} <span ng-class="item.icon"></span></a>
+        <a ng-click="venueSidebarController.navigateTo(item.route)">{{item.label}} <span ng-class="item.icon"></span></a>
     </li>
 </ul>
 <div class="sidebar-footer">

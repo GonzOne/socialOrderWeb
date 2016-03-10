@@ -69,7 +69,7 @@
                     deferred.resolve(list);
                 } else {
                     $log.log('No items found');
-                    deferred.reject();
+                    deferred.resolve(list);
                 }
             });
             return deferred.promise;
@@ -89,7 +89,7 @@
                     deferred.resolve(list);
                 } else {
                     $log.log('No items found');
-                    deferred.reject();
+                    deferred.resolve(list);
                 }
             });
             return deferred.promise;
@@ -309,13 +309,13 @@
             setVenueStaff:setVenueStaff,
             setVenueMenu:setVenueMenu,
             setVenueAdmin: setVenueAdmin,
+            setVenueProfilePic: setVenueProfilePic,
             getVenueAdminListById: getVenueAdminListById,
             getVenueStaffListById: getVenueStaffListById,
             updateVenueDetails: updateVenueDetails,
             isVenueValid: isVenueValid,
             getAllVenues: getAllVenues,
             getNumberOfVenues: getNumberOfVenues,
-            setVenueProfilePic: setVenueProfilePic,
             paginationNext: paginationNext,
             paginationPrev: paginationPrev
         }

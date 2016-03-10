@@ -21,6 +21,7 @@
             var k = newChildRef.key();
             mData.menu_id = k;
             mData.lastUpdate = getDate();
+            //I should clean this up!
             mData.menu.bottleBeer.menu_id = k;
             mData.menu.canBeer.menu_id = k;
             mData.menu.draftBeer.menu_id = k;
@@ -48,7 +49,8 @@
             var deferred = $q.defer();
             var venueMenu = venueMenusRef.child(k);
             venueMenu.once("value", function(snapshot) {
-                    var data = snapshot.val();
+                var data = snapshot.val();
+                $log.log('menu service : getMenuById - returned ', data);
                     deferred.resolve(data);
                 }, function (err) {
                     deferred.reject(err);
@@ -117,7 +119,7 @@
             draftBeer.remove();
         }
         var getDraftBeersByMenuId = function (key) {
-            $log.log('getDraftBeersByMenuId : key -', key)
+            $log.log('menu service : getDraftBeersByMenuId : key -', key)
             var deferred = $q.defer();
             var list = [];
             //var venueMenu = venueMenusRef.child(key).child('draftBeer');

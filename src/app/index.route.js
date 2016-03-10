@@ -115,39 +115,84 @@
               }
          })
          .state('venue.dashboard', {
-              url: '/dashboard',
+              url: '/dashboard/:venueId',
               title: 'Dashboard',
               templateUrl: 'app/venue/dashboard/venue.dashboard.html',
               controller: 'VenueDashboardController',
-              controllerAs: 'venueDashboardController'
+              controllerAs: 'venueDashboardController',
+                resolve: {
+                    venue: ['$stateParams', 'venueService',
+                        function($stateParams, venueService) {
+                            return venueService.getVenueById($stateParams.venueId);
+                        }
+                    ]
+                }
           })
           .state('venue.staff', {
-                url: '/staff',
+                url: '/staff/:venueId',
                 title: 'Staff',
                 templateUrl: 'app/venue/staff/venue.staff.html',
                 controller: 'VenueStaffController',
-                controllerAs: 'venueStaffController'
+                controllerAs: 'venueStaffController',
+                resolve: {
+                    admin: ['$stateParams', 'venueService',
+                        function($stateParams, venueService) {
+                            return venueService.getVenueAdminListById($stateParams.venueId);
+                        }
+                    ],
+                    staff: ['$stateParams', 'venueService',
+                        function($stateParams, venueService) {
+                            return venueService.getVenueStaffListById($stateParams.venueId);
+                        }
+                    ]
+                }
           })
           .state('venue.detail', {
-              url: '/detail',
+              url: '/detail/:venueId',
               title: 'Detail',
               templateUrl: 'app/venue/detail/venue.detail.html',
               controller: 'VenueDetailController',
-              controllerAs: 'venueDetailController'
+              controllerAs: 'venueDetailController',
+                resolve: {
+                    venue: ['$stateParams', 'venueService',
+                        function($stateParams, venueService) {
+                            return venueService.getVenueById($stateParams.venueId);
+                        }
+                    ],
+                    role: ['AuthService',
+                        function(AuthService) {
+                            return AuthService.getUserRole();
+                        }
+                    ]
+                }
           })
           .state('venue.account', {
-            url: '/account',
+            url: '/account/:venueId',
             title: 'Account',
             templateUrl: 'app/venue/account/venue.account.html',
             controller: 'VenueAccountController',
-            controllerAs: 'venueAccountController'
+            controllerAs: 'venueAccountController',
+            resolve: {
+                venue: ['$stateParams', 'venueService',
+                    function($stateParams, venueService) {
+                        return venueService.getVenueById($stateParams.venueId);
+                    }
+                ]
+            }
           })
           .state('venue.events', {
             url: '/events',
             title: 'Events',
             templateUrl: 'app/venue/events/venue.events.html',
             controller: 'VenueEventsController',
-            controllerAs: 'venueEventsController'
+            controllerAs: 'venueEventsController',
+            resolve: {
+                venue: ['$stateParams', 'venueService',
+                    function($stateParams, venueService) {
+                        return venueService.getVenueById($stateParams.venueId);
+                    }
+                ]
+            }
           })
           .state('venue.menu', {
               url: '/menu/:menuId',
@@ -155,11 +200,19 @@
               templateUrl: 'app/venue/menu/venue.menu.html',
               controller: 'VenueMenuController',
               controllerAs: 'venueMenuController',
-                menu: ['$stateParams', 'menuService',
-                    function($stateParams, menuService) {
-                        return menuService.getMenuById($stateParams.menuId);
-                    }
-                ]
+              resolve: {
+                    menu: ['$stateParams', 'menuService',
+                        function($stateParams, menuService) {
+                            return menuService.getMenuById($stateParams.menuId);
+                        }
+                    ],
+                    role: ['AuthService',
+                        function(AuthService) {
+                            return AuthService.getUserRole();
+                        }
+                    ]
+                }
+
           }).
             state('logout', {
                 url: '/',
