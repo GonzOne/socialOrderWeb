@@ -6,26 +6,15 @@
         .controller('AdminVenuesController', AdminVenuesController);
 
     /** @ngInject */
-    function AdminVenuesController($state, appGlobalVars, venueService, dataTemplates, $log) {
+    function AdminVenuesController($state, blockUI, venueService, dataTemplates, $log) {
         var vm = this;
         vm.sortType = 'name';
         vm.sortReverse  = false;
         vm.searchVenue = '';
         vm.pageNumber = 1;
         vm.limit = 50;
-        /*
-        vm.venueColumnDef = [
-            { field: 'id', name: '', cellTemplate: 'app/admin/partials/buttons/edit-venue-button.html', width: 34 },
-            { name: 'Venue', field: 'name',minWidth: 150, enableCellEdit: false },
-            { name: 'Address', field: 'address', minWidth: 150, enableCellEdit: false  },
-            { name: 'City', field: 'city', minWidth: 100, enableCellEdit: false  },
-            { name: 'Zip', field: 'zipcode', minWidth: 100, enableCellEdit: false  },
-            { name: 'Menu Id', field: 'menu_id', minWidth: 50, enableCellEdit: false  },
-            { name: 'Active', field: 'active', minWidth: 25, enableCellEdit: false  }];
-       */
         //export
         vm.editVenue =  editVenue;
-        //vm.editVenueRow = editVenueRow;
         vm.addVenue = addVenue;
         vm.getPages = getPages;
         vm.nextPage = nextPage;
@@ -58,8 +47,7 @@
         })();
 
         function editVenue(key) {
-            appGlobalVars.setVenueId(key);
-            $state.go('admin.detail')
+            $state.go('admin.detail', {venueId: key});
         }
         function nextPage () {
             vm.pageNumber++;
@@ -90,24 +78,23 @@
                 vm.pageNumber = 1;
             }
         }
-        /*
-        function editVenueRow(grid, row) {
-            $log.log('editVenueRow : g ', grid, ' r: ', row, ' key ', row.entity.key)
-            appGlobalVars.setVenueId(row.entity.key);
-            $state.go('admin.detail');
-
-
-        }
-        */
         function getPages (num) {
             return new Array(num);
         }
         function addVenue(){
-            $log.log('addVenue ');
-            appGlobalVars.clearVenue();
-            $state.go('admin.detail');
+            blockUI.start();
+            var tmpl = dataTemplates.getVenueTmpl();
+            venueService.createVenue(tmpl).then(function (key) {
+                $log.log('venue created successfuly',key);
+                blockUI.stop();
+                $state.go('admin.detail', {venueId: key});
+            }, function (error) {
+                vm.dataLoading = false;
+                blockUI.stop();
+                $log.log('venue returned ', error);
+                //display message
+            })
         }
-        $log.log('admin venues controller loaded ',vm)
 
     }
 })();
