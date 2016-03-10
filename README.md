@@ -1,4 +1,4 @@
-# Social Order
+# Social Order CMS
 This project was generated with 
 generator-gulp-angular ![Logo](generators/app/templates/src/assets/images/generator-gulp-angular-logo.png)
 
@@ -47,12 +47,15 @@ Besides simply installing everything, I recommend having or obtaining a **fair k
 ## Generator
 Everything else you need will be installed using:
 ```sh
-npm install --global generator-gulp-angular
+npm install 
+
+open web browser :
+http://localhost:3000/
 
 ### Run
 gulp serve
 
 ## Contributing
-
+Sole contributor : Manuel Gonzalez
 ## License
 Code licensed under MIT. Docs under Apache 2. PhoneGap is a trademark of Adobe.
