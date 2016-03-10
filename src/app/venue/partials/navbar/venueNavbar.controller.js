@@ -36,8 +36,7 @@
         function logout () {
             $log.log('VenueNavbarController log out ');
             appGlobalVars.clearSession();
-            Auth.$unauth();
-            $state.go('login');
+            $state.go('logout');
         }
 
 
