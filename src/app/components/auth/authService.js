@@ -9,13 +9,9 @@
     function AuthService($q, $firebaseAuth, KEYS, profileService, $log) {
 
         var usersRef = new Firebase(KEYS.firebase);
-        //this.cachedUser = usersRef.getAuth();
         var cachedUser = $firebaseAuth(usersRef);
         var userRole;
 
-        //this.isLoggedIn = function(){
-            //return !!$firebaseAuth(usersRef);
-        //};
         function getUser() {
             return cachedUser || usersRef.getAuth();
         }
@@ -75,6 +71,7 @@
         return {
             loginWithPW: loginWithPW,
             getUser: getUser,
+            getUserRole: function () {return userRole;},
             isLoggedIn: isLoggedIn,
             logout: logout,
             isAdmin: isAdmin
