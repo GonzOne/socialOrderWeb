@@ -1,6 +1,7 @@
 # Social Order CMS
-This project was generated with 
-generator-gulp-angular ![Logo](generators/app/templates/src/assets/images/generator-gulp-angular-logo.png)
+This project was generated with a Yeoman generator for AngularJS + Gulp. 
+#generator-gulp-angular
+
 
 # Generator-M-Ionic v1.5.0
 
