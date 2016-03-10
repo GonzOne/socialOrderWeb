@@ -1,0 +1,19 @@
+<ul class="sidebar">
+    <li class="sidebar-main">
+        <a ng-click="sidebarController.toggleSidebar()">
+            Dashboard
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+        </a>
+    </li>
+    <li class="sidebar-title"><span>NAVIGATION</span></li>
+    <li class="sidebar-list" ng-repeat="item in sidebarController.menuItems">
+        <a ui-sref="{{item.route}}">{{item.label}} <span ng-class="item.icon"></span></a>
+    </li>
+</ul>
+<div class="sidebar-footer">
+    <div class="col-xs-4">
+        <a href="#">
+            Support
+        </a>
+    </div>
+</div>

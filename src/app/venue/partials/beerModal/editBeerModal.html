@@ -1,0 +1,62 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Edit Row</h3>
+    </div>
+    <div class="modal-body">
+        <form name="form" role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    <div>
+                        <label for="name">Brand Name</label>
+                        <input type="text" name="name" id="name" class="form-control" ng-model="editBeerModalController.product.name"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <label for="price">Price</label>
+                        <input type="text" name="cost" id="cost" class="form-control" ng-model="editBeerModalController.product.cost"/>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="desc">Display Item:</label>
+                        <div class="input-group">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label ng-class="vm.product.active ? 'btn btn-default active' : 'btn btn-default'">
+                                    <input ng-model="editBeerModalController.product.active" ng-change="editBeerModalController.onDisplayChange(true)" name="yes" id="yes" type="radio"> Yes
+                                </label>
+                                <label ng-class="vm.product.active ? 'btn btn-default' : 'btn btn-default active'">
+                                    <input ng-model="editBeerModalController.product.active" ng-change="editBeerModalController.onDisplayChange(false)" name="no" id="no" type="radio"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div>
+                        <label for="desc">Description:</label>
+                        <textarea type="text" rows="2" name="desc" id="desc" class="form-control" ng-model="editBeerModalController.product.desc" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="varietal">Type/Varietal :</label>
+                    <select name="varietal" id="repeatSelect" class="form-control" ng-model="editBeerModalController.varietals.repeatSelect">
+                        <option ng-repeat="option in editBeerModalController.varietals.availableOptions" value="{{option.id}}">{{option.display}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-danger" ng-click="editBeerModalController.remove()">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" ng-click="editBeerModalController.save()">Save</button>
+        <button class="btn btn-warning" ng-click="$close()">Cancel</button>
+    </div>
+</div>

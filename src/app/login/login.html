@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" ui-sref="home">
+                <img src="./assets/images/logo.png" alt="socila order logo">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+    </div>
+</nav>
+<div class="container">
+    <!--
+    <div ng-show="login.error" class="alert alert-danger">{{login.error}}</div>
+    -->
+    <uib-alert ng-repeat="alert in login.alerts" type="{{alert.type}}" close="login.closeAlert($index)">{{alert.msg}}</uib-alert>
+    <form name="form" class="form-signin" ng-submit="login.login()" role="form">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="login.user.email" required autofocus>
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="login.user.password" required>
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me" ng-model="login.checked" ng-change="login.persistLogin()"> Remember me
+            </label>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || login.dataLoading" class="btn btn-primary">Login</button>
+            <img ng-if="login.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a ui-sref="register" class="btn btn-link">Register</a>
+        </div>
+    </form>
+
+</div> <!-- /container -->

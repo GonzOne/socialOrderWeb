@@ -1,0 +1,16 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" ng-include="'app/admin/partials/sidebar/sidebar.html'" ng-controller="SidebarController as sidebarController">
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+        <div class="page-content">
+
+ <header ng-include="'app/admin/partials/navbar/admin.navbar.html'" ng-controller="AdminNavbarController as adminNavbarController"></header>
+            <!-- Main Content -->
+            <div ui-view></div>
+
+        </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->

@@ -1,0 +1,122 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('socialOrderWeb')
+    .config(routerConfig);
+
+  /** @ngInject */
+  function routerConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'app/main/main.html',
+        controller: 'MainController',
+        controllerAs: 'mainController'
+
+      })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'app/login/login.html',
+            controller: 'LoginController',
+            controllerAs: 'login'
+
+        })
+        .state('register', {
+            url: '/register',
+            templateUrl: 'app/register/register.html',
+            controller: 'RegisterController',
+            controllerAs: 'register'
+
+        })
+        .state('admin', {
+          url: '/admin',
+          templateUrl: 'app/admin/app/app.html'
+        })
+        .state('admin.dashboard', {
+            url: '/dashboard',
+            title: 'Dashboard',
+            templateUrl: 'app/admin/dashboard/dashboard.html',
+            controller: 'AdminDashboardController',
+            controllerAs: 'adminDashboardController'
+        })
+        .state('admin.profiles', {
+            url: '/profiles',
+            title: 'Profiles',
+            templateUrl: 'app/admin/profiles/profiles.html',
+            controller: 'AdminProfilesController',
+            controllerAs: 'adminProfilesController'
+        })
+        .state('admin.venues', {
+            url: '/venues',
+            title: 'Venues',
+            templateUrl: 'app/admin/venues/venues.html',
+            controller: 'AdminVenuesController',
+            controllerAs: 'adminVenuesController'
+        })
+        .state('admin.detail', {
+            url: '/detail',
+            title: 'Detail',
+            templateUrl: 'app/venue/detail/venue.detail.html',
+            controller: 'VenueDetailController',
+            controllerAs: 'venueDetailController'
+
+        })
+        .state('admin.menu', {
+            url: '/menu',
+            title: 'Menu',
+            templateUrl: 'app/venue/menu/venue.menu.html',
+            controller: 'VenueMenuController',
+            controllerAs: 'venueMenuController'
+        })
+        .state('venue', {
+              url: '/venue',
+              templateUrl: 'app/venue/app/venue.app.html'
+         })
+         .state('venue.dashboard', {
+              url: '/dashboard',
+              title: 'Dashboard',
+              templateUrl: 'app/venue/dashboard/venue.dashboard.html',
+              controller: 'VenueDashboardController',
+              controllerAs: 'venueDashboardController'
+          })
+          .state('venue.staff', {
+                url: '/staff',
+                title: 'Staff',
+                templateUrl: 'app/venue/staff/venue.staff.html',
+                controller: 'VenueStaffController',
+                controllerAs: 'venueStaffController'
+          })
+          .state('venue.detail', {
+              url: '/detail',
+              title: 'Detail',
+              templateUrl: 'app/venue/detail/venue.detail.html',
+              controller: 'VenueDetailController',
+              controllerAs: 'venueDetailController'
+          })
+          .state('venue.account', {
+            url: '/account',
+            title: 'Account',
+            templateUrl: 'app/venue/account/venue.account.html',
+            controller: 'VenueAccountController',
+            controllerAs: 'venueAccountController'
+          })
+          .state('venue.events', {
+            url: '/events',
+            title: 'Events',
+            templateUrl: 'app/venue/events/venue.events.html',
+            controller: 'VenueEventsController',
+            controllerAs: 'venueEventsController'
+          })
+          .state('venue.menu', {
+              url: '/menu',
+              title: 'Menu',
+              templateUrl: 'app/venue/menu/venue.menu.html',
+              controller: 'VenueMenuController',
+              controllerAs: 'venueMenuController'
+          });
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
+  }
+
+})();

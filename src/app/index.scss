@@ -1,0 +1,358 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+$navbar-inverse-link-color: #5AADBB;
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path: "../../bower_components/font-awesome/fonts";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+@import "../../bower_components/font-awesome/scss/font-awesome";
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
+
+/* =-=-=-= Navigation =-=-=-=-= */
+
+.navbar .brand {
+  max-height: 50px;
+  overflow: visible;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.navbar a.navbar-brand {
+  padding: 0px 15px 0px;
+}
+
+.subnav {
+  margin:0;
+  top: 0px;
+  background-color: rgb(247,247,247);
+  border-bottom: 1px solid #E1E1E1;
+  padding: 8px 0px 0px 0px;
+}
+
+/* =-=-=-=-= Upsell section =-=-=-=-=- */
+.upsell{
+  background-color:#000;
+}
+.upsell-pod {
+  padding:10px 5px 15px 20px;
+  text-align:center;
+  color:#fff;
+}
+.upsell-pod-icon{
+  width:80px;
+  height:80px;
+}
+/* =-=-=-=-=-=-= Beta Section =-=-=-=-=-=-= */
+.beta-section{
+  background-color:#000;
+  width:100%;
+  color:#fff;
+}
+.beta-form{
+  padding: 20px 50px 75px;
+}
+/* =-=-=-=-=-=-= Login hero =-=-=-=-=-=-=-= */
+.login-container {
+  width: 1200px;
+  height: 500px;
+  position:relative;
+  margin:auto;
+}
+.login-form {
+  float: center;
+  position: absolute;
+  left: 35%;
+  top: 200px;
+  padding:20px;
+  background-color: white;
+  z-index: 1000;
+  margin-bottom: -20px;
+}
+/* Progress Tracker v2 */
+ol.progress[data-steps="2"] li { width: 49%; }
+ol.progress[data-steps="3"] li { width: 33%; }
+ol.progress[data-steps="4"] li { width: 24%; }
+ol.progress[data-steps="5"] li { width: 19%; }
+ol.progress[data-steps="6"] li { width: 16%; }
+ol.progress[data-steps="7"] li { width: 14%; }
+ol.progress[data-steps="8"] li { width: 12%; }
+ol.progress[data-steps="9"] li { width: 11%; }
+
+.progress {
+  width: 100%;
+  list-style: none;
+  list-style-image: none;
+  margin: 20px 0 20px 0;
+  padding: 0;
+}
+
+.progress li {
+  float: left;
+  text-align: center;
+  position: relative;
+}
+
+.progress .name {
+  display: block;
+  vertical-align: bottom;
+  text-align: center;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.3;
+}
+
+.progress .step {
+  color: black;
+  border: 3px solid silver;
+  background-color: silver;
+  border-radius: 50%;
+  line-height: 1.2;
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-block;
+  z-index: 0;
+}
+
+.progress .step span {
+  opacity: 0.3;
+}
+
+.progress .active .name,
+.progress .active .step span {
+  opacity: 1;
+}
+
+.progress .step:before {
+  content: "";
+  display: block;
+  background-color: silver;
+  height: 0.4em;
+  width: 50%;
+  position: absolute;
+  bottom: 0.6em;
+  left: 0;
+  z-index: -1;
+}
+
+.progress .step:after {
+  content: "";
+  display: block;
+  background-color: silver;
+  height: 0.4em;
+  width: 50%;
+  position: absolute;
+  bottom: 0.6em;
+  right: 0;
+  z-index: -1;
+}
+
+.progress li:first-of-type .step:before {
+  display: none;
+}
+
+.progress li:last-of-type .step:after {
+  display: none;
+}
+
+.progress .done .step,
+.progress .done .step:before,
+.progress .done .step:after,
+.progress .active .step,
+.progress .active .step:before {
+  background-color: yellowgreen;
+}
+
+.progress .done .step,
+.progress .active .step {
+  border: 3px solid yellowgreen;
+}
+#venueForm .form-control-feedback {
+  right: 15px;
+}
+#venueForm .selectContainer .form-control-feedback {
+  right: 25px;
+}
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+  background-color: #777;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+.carousel-indicators {
+  top: 1.5rem;
+  right: 1.5rem;
+  bottom: auto;
+  left: auto;
+  width: 1rem;
+  margin-left: 0;
+}
+
+.carousel-indicators > li {
+  margin-bottom: .25rem;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+.row-upsell {
+  padding:35px;
+  background-color: #000;
+}
+.row-marketing {
+  padding: 35px;
+  background-color: #000;
+  border: 1px solid #DDD;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 62em) {
+  .featurette-heading {
+    margin-top: 7rem;
+  }
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.grid {
+  width: 90%;
+  height: 250px;
+}
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+}
+
+@import 'sass/util';
+
+

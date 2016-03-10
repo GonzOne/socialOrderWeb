@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon pull-left">
+                    <i class="fa fa-users"></i>
+                </div>
+                <div class="title">{{adminDashboardController.usersCount}}</div>
+                <div class="comment">Patrons</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon pull-left">
+                    <i class="fa fa-building"></i>
+                </div>
+                <div class="title"> {{adminDashboardController.venueCount}}</div>
+                <div class="comment">Venues</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon pull-left">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="title">{{adminDashboardController.staffCount}}</div>
+                <div class="comment">Staff</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-3 col-md-6 col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="widget-icon pull-left">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div class="title">62</div>
+                <div class="comment">Messages</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-tasks" title="Servers">
+                <a ui-sref='admin.venues'>Manage</a>
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tbody>                                                                                                                  <!-- ng-class="autoScroll ? 'icon-autoscroll' : 'icon-autoscroll-disabled'"> -->
+                        <tr ng-repeat="item in adminDashboardController.lastTenEntries">
+                            <td>{{item.name}}</td><td>{{item.address}}</td>
+                            <td>
+                                <span ng-class="item.active == 1  ? 'text-success' : 'text-danger'">
+                                <i ng-class="item.active == 1 ? 'fa fa-check' : 'fa fa-warning'"></i>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+    <div class="col-lg-6">
+        <rd-widget>
+            <rd-widget-header icon="fa-users" title="Users">
+                <input type="text" placeholder="Search" class="form-control input-sm" />
+            </rd-widget-header>
+            <rd-widget-body classes="medium no-padding">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr><th class="text-center">ID</th><th>Username</th><th>Role</th><th>User Id</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in adminDashboardController.lastUserRegistrations">
+                            <td class="text-center">{{$index}}</td>
+                            <td>{{item.firstName}} {{item.lastName}}</td>
+                            <td>{{item.role}}</td>
+                            <td>{{item.uid}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </rd-widget-body>
+            <rd-widget>
+    </div>
+</div>

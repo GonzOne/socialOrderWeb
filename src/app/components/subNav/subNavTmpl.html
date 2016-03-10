@@ -1,0 +1,15 @@
+<div class="navbar subnav" role="navigation" ng-show="subNavController.isAdmin">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="pager subnav-pager">
+                <div class="btn-toolbar">
+                        <button type="button" class="{{button.style}}" ng-repeat="button in subNavController.buttons" ng-click="subNavController.gotoAnchor(button.action)">
+                            <i ng-show="{{button.icon}}" class="{{button.iconStyle}}"></i> {{button.label}}
+                        </button>
+
+                </div>
+
+            </ul>
+        </div>
+    </div>
+</div>

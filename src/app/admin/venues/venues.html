@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="container-fluid">
+        <h1>Venues</h1>
+        <p>The following is a snapshot of our current venue data.</p>
+        <div class="page-header">
+            <h1>Bars</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+             </div>
+            <div class="col-xs-6 col-md-4 text-align-right">
+                <button class="btn btn-primary" ng-click="adminVenuesController.addVenue()"> <span class="glyphicon glyphicon-plus"></span> ADD</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="input-group"> <span class="input-group-addon">Filter</span>
+
+                <input id="filter" type="text" class="form-control" placeholder="filter text" ng-model="adminVenuesController.searchVenue">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Edit</th>
+                        <th>
+                            <a href="#" ng-click="adminVenuesController.sortType = 'name'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                Venue Name
+                                <span ng-show="adminVenuesController.sortType == 'name' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="adminVenuesController.sortType == 'name' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+
+                        <th>
+                            <a href="#" ng-click="adminVenuesController.sortType = 'zipcode'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                Zipcode
+                                <span ng-show="adminVenuesController.sortType == 'zipcode' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="adminVenuesController.sortType == 'zipcode' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="adminVenuesController.sortType = 'key'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                Venue ID
+                                <span ng-show="adminVenuesController.sortType == 'key' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="adminVenuesController.sortType == 'key' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th><a href="#" ng-click="adminVenuesController.sortType = 'menu_id'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                            Menu Id
+                            <span ng-show="adminVenuesController.sortType == 'menu_id' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="adminVenuesController.sortType == 'menu_id' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                        </a></th>
+                        <th>
+                            <a href="#" ng-click="adminVenuesController.sortType = 'active';adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                Active
+                                <span ng-show="adminVenuesController.sortType == 'active' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="adminVenuesController.sortType == 'active' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                            </a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="searchable">                                                                                                                  <!-- ng-class="autoScroll ? 'icon-autoscroll' : 'icon-autoscroll-disabled'"> -->
+                    <tr ng-repeat="item in adminVenuesController.venueData | orderBy:adminVenuesController.sortType:adminVenuesController.sortReverse | filter:adminVenuesController.searchVenue">
+                        <td>{{$index}}</td>
+                        <td>
+                            <a href="#" ng-click="adminVenuesController.editVenue(item.key)">
+                                <span class="fa fa-edit"></span>
+                            </a>
+                        </td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.zipcode}}</td>
+                        <td>{{item.key}}</td>
+                        <td>{{item.menu_id}}</td>
+                        <td>
+                                <span ng-class="item.active == 1  ? 'text-success' : 'text-danger'">
+                                <i ng-class="item.active == 1 ? 'fa fa-check' : 'fa fa-warning'"></i>
+                                </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!--
+                    <ul class="pagination">
+                        <li ng-repeat="i in adminVenuesController.getPages(adminVenuesController.totalpages) track by $index" ng-class="{ active: $index == adminVenuesController.pageNumber}">
+                        <a href="#" ng-click="adminVenuesController.setPage($index);">{{$index + 1}}</a>
+                        </li>
+                    </ul>
+
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous" ng-click="adminVenuesController.prevPage()">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#">{{adminVenuesController.pageNumber}}</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" ng-click="adminVenuesController.nextPage()">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    -->
+                </div>
+            </div>
+            <!--
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <div id="venues_grid" ui-grid="{ data: adminVenuesController.venueData, columnDefs: adminVenuesController.venueColumnDef }" class="grid"></div>
+                </div>
+
+            </div>
+            -->
+        </div><!-- end venues -->
+    </div> <!-- end fluid-container -->
+</div>

@@ -1,0 +1,173 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="./assets/images/logo.png" alt="socila order logo">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" collapse="navbarCollapsed">
+            <!-- your normal collapsable content here -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ui-sref="login">LogIn</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <!-- Carousel  ================================================== -->
+    <div style="height: 500px">
+        <uib-carousel interval="mainController.slideInterval" no-wrap="mainController.noWrapSlides">
+            <uib-slide ng-repeat="slide in mainController.slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="container">
+                    <div class="carousel-caption text-xs-right">
+                        <h1>Slide {{$index}}</h1>
+                        <p>{{slide.text}}</p>
+                        <p><a class="btn btn-lg btn-primary" ui-sref="register" role="button">Register today</a></p>
+                    </div>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+
+    <!-- /.carousel -->
+
+        <div class="row row-upsell">
+                <div class="col-lg-4">
+                    <div class="upsell-pod">
+                        <h3>
+                            <img class="upsell-pod-icon" src="assets/images/stats-icon.png" />
+                        </h3>
+                        <p>
+                            <span style="font-size: 12pt;">Increase customer order value<br>by over 70%.</span>
+                        </p>
+                    </div>
+                </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <div class="upsell-pod">
+                            <h3>
+                                <img class="upsell-pod-icon" src="assets/images/phone-icon.png" />
+                            </h3>
+                            <p>
+                                <span style="font-size: 12pt;">Capture customer data insights to power targeted and personalised marketing campaigns.</span>
+                            </p>
+                        </div>
+                    </div><!-- /.col-lg-4 -->
+                        <div class="col-lg-4">
+                            <div class="upsell-pod">
+                                <h3>
+                                    <img class="upsell-pod-icon" src="assets/images/loyalty-icon.png" />
+                                </h3>
+                                <p>
+                                    <span style="font-size: 12pt;">Boost customer loyalty, frequency of<br> visits and extend market reach.</span>
+                                </p>
+                            </div>
+                        </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="marketing_container">
+
+
+                    <p><span style="color: #595959;"><strong><span style="font-size: 14pt;"><a href="http://www.qikserve.com/wp-content/uploads/2015/06/order-dark.png"><img class="alignnone wp-image-824" src="http://www.qikserve.com/wp-content/uploads/2015/06/order-dark.png" alt="" height="40" width="40"><br>
+                    </a>Increase customer order value<br>
+</span></strong></span>Upsell without hard sell. Encourage guests to buy more and stay longer with built-in upsell prompts. SOCIAL ORDER clients showed an uplift of spend per customer between 50% and 70%.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="marketing_container">
+
+
+                    <p><span style="color: #595959;"><strong><span style="font-size: 14pt;"><img class="alignnone wp-image-809" src="http://www.qikserve.com/wp-content/uploads/2015/06/customer-order-iconb.png" alt="" height="40" width="40"><br>
+Flexible and tailored customer experience<br>
+</span></strong></span>Define the customer journey and configure available features to support any service model, from takeaway and quick service to high end. Bespoke functionality development also available.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="et_pb_blurb_container">
+
+
+                    <p><span style="color: #595959;"><strong><span style="font-size: 14pt;"><img class="alignnone wp-image-822" src="http://www.qikserve.com/wp-content/uploads/2015/06/loyalty-icon-dark.png" alt="loyalty-icon-dark" height="40" width="40"><br>
+Keep your guests coming back<br>
+</span></strong></span>Improve loyalty and customer lifetime value with personalised incentives and a differentiated, convenient mobile experience.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="et_pb_blurb_container">
+
+
+                    <p><span style="font-size: 14pt; color: #595959;"><strong><img class="alignnone wp-image-827" src="http://www.qikserve.com/wp-content/uploads/2015/06/tagrget-icon.png" alt="tagrget-icon" height="40" width="40"><br>
+                        Boost profits with targeted marketing<br>
+                    </strong></span>Attract new customers and drive additional revenue with targeted marketing campaigns guided by detailed customer data and insights.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="et_pb_blurb_container">
+
+
+                    <p><span style="font-size: 14pt; color: #595959;"><strong><img class="alignnone wp-image-835" src="http://www.qikserve.com/wp-content/uploads/2015/06/efficient-icon.png" alt="efficient-icon" height="40" width="40"><br>
+                        Improve operational efficiency<br>
+                    </strong></span>Remove the pressure from busy environments. SOCIAL ORDER improves order accuracy, lets customers relax and lets staff concentrate on great service.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="et_pb_blurb_container">
+
+
+                    <p><span style="color: #595959;"><strong><span style="font-size: 14pt;"><img class="alignnone wp-image-836" src="http://www.qikserve.com/wp-content/uploads/2015/06/integrate-icon.png" alt="integrate-icon" height="40" width="40"><br>
+Quick and easy deployment with no installation costs<br>
+</span></strong></span>Seamless integration with your existing payment gateways and POS systems.</p>
+
+                </div>
+            </div>
+        </div>
+
+    <section id="beta" class="beta-section">
+        <div class="beta-form">
+            <h1>Join the beta program.</h1>
+            <p>Test drive our application and watch your venue revenues grow.</p>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <input class="form-control" type="text" placeholder="your name" ng-model="main.beta.name">
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="email" ng-model="main.beta.email">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="submit" ng-click="main.sendInvite()">Submit</button>
+                                  </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- end Beta Invite -->
+    </div><!-- /.container -->
+
+
+</div>

@@ -1,0 +1,71 @@
+<!-- Header Bar -->
+<div class="row header">
+    <div class="col-xs-12">
+        <div class="user pull-right">
+            <div class="item dropdown" uib-dropdown on-toggle="toggled(open)">
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                    <img src="assets/images/avatar.jpg">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">
+                        {{venueNavbarController.username}}
+                    </li>
+                    <li class="divider"></li>
+                    <li class="link">
+                        <a href="#">
+                          Profile
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="link">
+                        <a href="#" ng-click="venueNavbarController.logout()">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item dropdown" uib-dropdown on-toggle="toggled(open)">
+                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                    <i class="fa fa-bell-o"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">
+                        Notifications
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">Server Down!</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="meta">
+            <div class="page">
+                Dashboard
+            </div>
+            <div class="breadcrumb-links">
+                Home / Dashboard
+            </div>
+        </div>
+    </div>
+</div><!-- End Header Bar -->
+<!-- Progress Bar -->
+<ol class="progress" data-steps="4">
+    <!-- class="active" -->
+    <li>
+        <span class="name">Details</span>
+        <span class="step"><span>1</span></span>
+    </li>
+    <li>
+        <span class="name">Menu</span>
+        <span class="step"><span>2</span></span>
+    </li>
+    <li>
+        <span class="name">Staff</span>
+        <span class="step"><span>3</span></span>
+    </li>
+    <li>
+        <span class="name">Publish</span>
+        <span class="step"><span>4</span></span>
+    </li>
+</ol><!-- End Progress Bar -->

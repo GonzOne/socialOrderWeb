@@ -1,0 +1,16 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" ng-include="'app/venue/partials/sidebar/venue.sidebar.html'" ng-controller="VenueSidebarController as venueSidebarController">
+    </div>
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+        <div class="page-content">
+
+            <header ng-include="'app/venue/partials/navbar/venue.navbar.html'" ng-controller="VenueNavbarController as venueNavbarController"></header>
+            <!-- Main Content -->
+            <div ui-view></div>
+
+        </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->

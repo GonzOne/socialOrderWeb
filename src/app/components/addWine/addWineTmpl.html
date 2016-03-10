@@ -1,0 +1,93 @@
+<div class="row">
+    <div>
+        <button class="btn btn-primary" ng-click="vm.toggleForm()"><i ng-class="vm.isToggled ? 'fa fa-minus-square' : 'fa fa-glass'"></i></button>
+        <form name="form" ng-submit="vm.addWineItem()" role="form" ng-show="vm.isToggled">
+            <hr>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                        <label for="name">Name</label>
+                        <input type="text" placeholder="{{vm.brandPlaceholder}}" name="name" id="name" class="form-control" ng-model="vm.product.name" required />
+                        <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Brand name is required</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div ng-class="{ 'has-error': form.glass.$dirty && form.glass.$error.required }">
+                        <label for="glass">Glass Price</label>
+                        <input type="text" placeholder="0.00" name="glass" id="cost" class="form-control" ng-model="vm.product.cost" required />
+                        <span ng-show="form.glass.$dirty && form.glass.$error.required" class="help-block">Glass price is required</span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <label for="bottle">Bottle price</label>
+                        <input type="text" placeholder="0.00" name="bottle" id="bottle" class="form-control" ng-model="vm.product.bottle_cost"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="desc">Active Item:</label>
+                        <div class="input-group">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label ng-class="vm.product.active ? 'btn btn-default active' : 'btn btn-default'">
+                                    <input ng-model="vm.product.active" ng-change="vm.onDisplayChange(true)" name="yes" id="yes" type="radio"> Yes
+                                </label>
+                                <label ng-class="vm.product.active ? 'btn btn-default' : 'btn btn-default active'">
+                                    <input ng-model="vm.product.active" ng-change="vm.onDisplayChange(false)" name="no" id="no" type="radio"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div>
+                        <label for="varietal">Varietal</label>
+                        <input type="text" placeholder="{{vm.brandVarietal}}" name="varietal" id="varietal" class="form-control" ng-model="vm.product.varietal"/>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <label for="region">Region</label>
+                        <input type="text" placeholder="{{vm.brandRegion}}" name="region" id="region" class="form-control" ng-model="vm.product.region"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <label for="country">Country</label>
+                        <input type="text" placeholder="{{vm.brandCountry}}" name="country" id="country" class="form-control" ng-model="vm.product.country"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div>
+                        <label for="year">Year</label>
+                        <input type="number" placeholder="{{vm.brandYear}}" name="year" id="year" class="form-control" ng-model="vm.product.year"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-class="{ 'has-error': form.desc.$dirty && form.desc.$error.required }">
+                        <label for="desc">Description:</label>
+                        <textarea type="text" placeholder="{{vm.brandDesc}}" rows="2" name="desc" id="desc" class="form-control" ng-model="vm.product.desc" required></textarea>
+                        <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Description is required</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">ADD</button>
+                <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+            <hr>
+        </form>
+    </div>
+</div>

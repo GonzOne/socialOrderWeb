@@ -1,0 +1,61 @@
+<div class="row">
+    <div>
+        <button class="btn btn-primary" ng-click="vm.toggleForm()"><i ng-class="vm.isToggled ? 'fa fa-minus-square' : 'fa fa-flask'"></i></button>
+        <!-- {'NAME': 'Pacifico', 'DESC': '(tiny beer). mazatlan, mexico', 'DISPLAY': true, 'TYPE': 'bottle', 'COMMENT': '', 'COUNT': 0, 'COST': {  'USD': '2.00'}-->
+        <form name="form" ng-submit="vm.addCocktailItem()" role="form" ng-show="vm.isToggled">
+            <hr>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+                        <label for="name">Cocktail Name</label>
+                        <input type="text" placeholder="ex: Knife In The Water" name="name" id="name" class="form-control" ng-model="vm.product.name" required />
+                        <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Cocktail name is required</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div ng-class="{ 'has-error': form.cost.$dirty && form.cost.$error.required }">
+                        <label for="price">Price</label>
+                        <input type="text" placeholder="0.00" name="cost" id="cost" class="form-control" ng-model="vm.product.cost" required />
+                        <span ng-show="form.cost.$dirty && form.cost.$error.required" class="help-block">Price is required</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="desc">Display Item:</label>
+                        <div class="input-group">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label ng-class="vm.product.active ? 'btn btn-default active' : 'btn btn-default'">
+                                    <input ng-model="vm.product.active" ng-change="vm.onDisplayChange(true)" name="yes" id="yes" type="radio"> Yes
+                                </label>
+                                <label ng-class="vm.product.active ? 'btn btn-default' : 'btn btn-default active'">
+                                    <input ng-model="vm.product.active" ng-change="vm.onDisplayChange(false)" name="no" id="no" type="radio"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div ng-class="{ 'has-error': form.desc.$dirty && form.desc.$error.required }">
+                        <label for="desc">Description:</label>
+                        <textarea type="text" placeholder="ex: Manzanilla, salers, aperitif, dolin blanc, peychauds" rows="2" name="desc" id="desc" class="form-control" ng-model="vm.product.desc" required></textarea>
+                        <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Description is required</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">ADD</button>
+                <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+            <hr>
+        </form>
+    </div>
+</div>

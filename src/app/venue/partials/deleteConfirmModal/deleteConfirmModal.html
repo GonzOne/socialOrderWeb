@@ -1,0 +1,20 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Delete</h3>
+    </div>
+    <div class="modal-body">
+      <div class="center-block">
+       <h1 style="text-align:center; color:red;">
+           {{deleteConfirmModalController.header}}
+       </h1>
+
+       <p class="text-warning">
+           {{deleteConfirmModalController.message}}
+       </p>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="deleteConfirmModalController.cancel()">Cancel</button>
+        <button class="btn btn-danger" ng-click="deleteConfirmModalController.deleteConfirmed()">Delete</button>
+    </div>
+</div>
