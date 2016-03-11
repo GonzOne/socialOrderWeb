@@ -1,0 +1,13 @@
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'] {
+  padding: 0 8px;
+  height: 34px;
+  border: 1px solid #e6e6e6;
+}
+
+textarea {
+  border: 1px solid #e6e6e6;
+  padding: 4px 8px;
+}
