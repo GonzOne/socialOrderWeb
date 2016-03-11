@@ -1,0 +1,109 @@
+
+/* =========== dashboard module============= */
+.dash-module{
+  margin-bottom: 20px;
+  background: #fff;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.06),0 1px 0px 0 rgba(0,0,0,0.02);
+
+  .module-heading{
+    padding: 20px 30px;
+    line-height: 38px;
+    min-height: 39px;
+    border-radius: 3px;
+    color: #fff;
+
+     .module-title{
+      float: left;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 0;
+      margin-top: 0;
+       a{
+         color:#ccc;
+       }
+     }
+     .module-nav-widget{
+       position: relative;
+       text-align: right;
+       float: right;
+       padding-left: 15px;
+       display: inline-block;
+       font-size: 15px;
+       line-height: 0px;
+
+       a {
+         color: #fff;
+         i {
+           font-size: 24px;
+         }
+       }
+     }
+
+    }
+  .module-body {
+    background: #fff;
+    padding: 15px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+}
+.module-bg-stable {
+  background-color: rgb(48, 66, 105);
+
+}
+.text-light {
+  color: #fff;
+}
+/* ========== widget=============== */
+.widget-panel {
+  padding: 40px 20px;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 20px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.06),0 1px 0px 0 rgba(0,0,0,0.02);
+}
+.widget-bg-white {
+  background-color: #ffffff;
+}
+.widget-style {
+  padding-left: 30px;
+  i {
+    font-size: 48px;
+    float: right;
+    padding: 35px 35px 29px;
+    margin-top: -40px;
+    margin-right: -20px;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 28px;
+  }
+
+}
+
+.todoapp {
+  padding: 10px 30px 20px 30px !important;
+}
+#todo-message {
+  font-size: 16px;
+}
+.cr-styled {
+  display: inline-block;
+  margin: 0px 2px;
+  line-height: 20px;
+  font-weight: normal;
+  cursor: pointer;
+}
+.cr-styled input {
+  visibility: hidden;
+  display: none;
+}

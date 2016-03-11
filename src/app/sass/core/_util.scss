@@ -1,4 +1,7 @@
 /***** Margin *****/
+.m-0 {
+  margin: 0px !important;
+}
 .mt-0 {
 	margin-top: 0px !important;
 }
@@ -279,7 +282,6 @@
 .position-relative {
 	position: relative !important;
 }
-
 .text-align-left {
 	text-align: left !important;
 }
@@ -291,7 +293,9 @@
 .text-align-center {
 	text-align: center !important;
 }
-
+.text-uppercase {
+  text-transform: uppercase;
+}
 .valign-top {
 	vertical-align: top !important;
 }

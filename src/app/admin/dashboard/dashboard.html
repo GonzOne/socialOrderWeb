@@ -1,112 +1,117 @@
-<div class="row">
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <rd-widget>
-            <rd-widget-body>
-                <div class="widget-icon pull-left">
-                    <i class="fa fa-users"></i>
-                </div>
-                <div class="title">{{adminDashboardController.usersCount}}</div>
-                <div class="comment">Patrons</div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <rd-widget>
-            <rd-widget-body>
-                <div class="widget-icon pull-left">
-                    <i class="fa fa-building"></i>
-                </div>
-                <div class="title"> {{adminDashboardController.venueCount}}</div>
-                <div class="comment">Venues</div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <rd-widget>
-            <rd-widget-body>
-                <div class="widget-icon pull-left">
-                    <i class="fa fa-user"></i>
-                </div>
-                <div class="title">{{adminDashboardController.staffCount}}</div>
-                <div class="comment">Staff</div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
-        <rd-widget>
-            <rd-widget-body>
-                <div class="widget-icon pull-left">
-                    <i class="fa fa-comment"></i>
-                </div>
-                <div class="title">62</div>
-                <div class="comment">Messages</div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-</div>
+<div class="page-wrapper container-fluid">
+    <!-- stats row-->
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-eye text-default" number="50" module-label="Daily Visits"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-building text-primary" number="{{adminDashboardController.venueCount}}" module-label="Venues"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-tag text-info" number="1268" module-label="New Orders"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-users text-success" number="{{adminDashboardController.usersCount}}" module-label="Users"></so-widget-module>
+        </div>
+    </div> <!-- end row -->
 
-<div class="row">
-    <div class="col-lg-6">
-        <rd-widget>
-            <rd-widget-header icon="fa-tasks" title="Servers">
-                <a ui-sref='admin.venues'>Manage</a>
-            </rd-widget-header>
-            <rd-widget-body classes="medium no-padding">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="text-center">ID</th>
-                            <th>Edit</th>
-                            <th>Name</th>
-                            <th>Venue ID</th>
-                            <th>Active</th>
-                        </tr>
-                        </thead>
-                        <tbody>                                                                                                                  <!-- ng-class="autoScroll ? 'icon-autoscroll' : 'icon-autoscroll-disabled'"> -->
-                        <tr ng-repeat="item in adminDashboardController.lastTenEntries">
-                            <td>{{$index + 1}}</td>
-                            <td>
-                                <a href="#" ng-click="adminDashboardController.editVenue(item.key)">
-                                    <span class="fa fa-edit"></span>
-                                </a>
-                            </td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.key}}</td>
-                            <td>
-                                <span ng-class="item.active == 1  ? 'text-success' : 'text-danger'">
-                                <i ng-class="item.active == 1 ? 'fa fa-check' : 'fa fa-warning'"></i>
-                                </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+    <div class="row">
+
+        <div class="col-lg-6">
+            <div class="dash-module"><!-- /module  heading -->
+                <div class="module-heading module-bg-stable">
+                    <h3 class="module-title text-light text-uppercase">
+                        Last 10 <a ui-sref='admin.venues'>Venue</a> entries
+                    </h3>
+                    <div class="module-nav-widget">
+                        <div class="divider"></div>
+                        <a ng-click="adminDashboardController.toggleModule('venue')"><i class="fa fa-minus-square-o"></i></a>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-            </rd-widget-body>
-        </rd-widget>
-    </div>
-    <div class="col-lg-6">
-        <rd-widget>
-            <rd-widget-header icon="fa-users" title="Users">
-                <input type="text" placeholder="Search" class="form-control input-sm" />
-            </rd-widget-header>
-            <rd-widget-body classes="medium no-padding">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr><th class="text-center">ID</th><th>Username</th><th>Role</th><th>User Id</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="item in adminDashboardController.lastUserRegistrations">
-                            <td class="text-center">{{$index}}</td>
-                            <td>{{item.firstName}} {{item.lastName}}</td>
-                            <td>{{item.role}}</td>
-                            <td>{{item.uid}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div uib-collapse="adminDashboardController.isVenueModCollapsed">
+                    <div class="module-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Edit</th>
+                                    <th>Venue Name</th>
+                                    <th>Venue ID</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in adminDashboardController.lastTenEntries">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <a href="#" ng-click="adminDashboardController.editVenue(item.key)">
+                                            <span class="fa fa-edit"></span>
+                                        </a>
+                                    </td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.key}}</td>
+                                    <td class="text-align-center">
+                                    <span ng-class="item.active == 1  ? ' text-success' : 'text-danger'">
+                                    <i ng-class="item.active == 1 ? ' fa fa-check' : 'fa fa-warning'"></i>
+                                    </span>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </rd-widget-body>
-            <rd-widget>
-    </div>
+            </div>
+        </div> <!-- end col -->
+
+        <div class="col-lg-6">
+            <div class="dash-module"><!-- /module heading -->
+                <div class="module-heading module-bg-stable">
+                    <h3 class="module-title text-light text-uppercase">
+                        Last registered <a ui-sref='admin.profiles'>Users</a>
+                    </h3>
+                    <div class="module-nav-widget">
+                        <div class="divider"></div>
+                        <a ng-click="adminDashboardController.toggleModule('users')"><i class="fa fa-minus-square-o"></i></a>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div uib-collapse="adminDashboardController.isUserModCollapsed">
+                    <div class="module-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <th>User Id</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in adminDashboardController.lastUserRegistrations">
+                                    <td class="text-center">{{$index}}</td>
+                                    <td>{{item.firstName}} {{item.lastName}}</td>
+                                    <td>{{item.role}}</td>
+                                    <td>{{item.uid}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+        </div> <!-- end col -->
+    </div> <!-- end row -->
 </div>
+<footer class="page-footer text-align-center">
+    2016 © Social Order.
+</footer>
+<back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>

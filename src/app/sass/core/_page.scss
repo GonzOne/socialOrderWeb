@@ -1,0 +1,23 @@
+.page-wrapper {
+  padding-top: 20px;
+  min-height: 550px;
+  padding-bottom: 70px;
+  background-color: #F1F4F5;
+}
+.page-title {
+  padding: 0px 20px 20px;
+  h3 {
+    margin: 0px;
+    font-size: 20px;
+  }
+}
+.page-footer {
+  color: #58666e;
+  position:fixed;
+  left:0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 20px 30px;
+  background-color: #f9f9f9;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}

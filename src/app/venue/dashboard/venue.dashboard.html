@@ -1,7 +1,67 @@
-<div class="jumbotron" ng-show="venueDashboardController.displayWelcome">
-    <div class="container">
-        <h1>Welcome To Social Order</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button" ui-sref="venue.detail">Get Started &raquo;</a></p>
+<div class="page-wrapper container-fluid">
+    <div class="page-title">
+        <h1>Welcome!</h1>
+    </div>
+    <!-- stats roww-->
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-eye text-default" number="125" module-label="Daily Visits"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-tag text-primary" number="425" module-label="New Orders"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-tags text-info" number="1256" module-label="Archived Orders"></so-widget-module>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <so-widget-module icon-class="fa fa-users text-success" number="1" module-label="Staff"></so-widget-module>
+        </div>
+
+    </div> <!-- end row -->
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="dash-module"><!-- /module heading -->
+                <div class="module-heading module-bg-stable">
+                    <h3 class="module-title text-light text-uppercase">
+                        Online Staff
+                    </h3>
+                    <div class="module-nav-widget">
+                        <div class="divider"></div>
+                        <a ng-click="adminDashboardController.toggleUserModule()"><i class="fa fa-minus-square-o"></i></a>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            <div uib-collapse="adminDashboardController.isUserModCollapsed">
+                <div class="module-body">
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="dash-module"><!-- /module heading -->
+                <div class="module-heading module-bg-stable">
+                    <h3 class="module-title text-light text-uppercase">
+                        Current Promotion</a>
+                    </h3>
+                    <div class="module-nav-widget">
+
+                        <a ng-click="adminDashboardController.toggleUserModule()"><i class="fa fa-minus-square-o"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div uib-collapse="adminDashboardController.isUserModCollapsed">
+                    <div class="module-body">
+                    </div>
+                </div>
+              </div>
+        </div>
     </div>
 </div>
+<footer class="page-footer text-align-center">
+    2016 © Social Order.
+</footer>
+<back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>

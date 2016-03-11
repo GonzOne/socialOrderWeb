@@ -8,6 +8,7 @@
     /** @ngInject */
     function AdminVenuesController($state, blockUI, venueService, dataTemplates, $log) {
         var vm = this;
+        vm.isVenuesModCollapsed = false;
         vm.sortType = 'name';
         vm.sortReverse  = false;
         vm.searchVenue = '';
@@ -16,6 +17,7 @@
         //export
         vm.editVenue =  editVenue;
         vm.addVenue = addVenue;
+        vm.toggleModule = toggleModule;
         vm.getPages = getPages;
         vm.nextPage = nextPage;
         vm.prevPage = prevPage;
@@ -45,7 +47,9 @@
             })
              */
         })();
-
+        function toggleModule () {
+            vm.isVenuesModCollapsed = !vm.isVenuesModCollapsed;
+        }
         function editVenue(key) {
             $state.go('admin.detail', {venueId: key});
         }

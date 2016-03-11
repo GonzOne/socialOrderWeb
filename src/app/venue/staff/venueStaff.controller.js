@@ -8,6 +8,8 @@
     /** @ngInject */
     function VenueStaffController(admin, staff, appGlobalVars, dataTemplates, venueService, profileService, Auth, blockUI, uiGridConstants, $log) {
         var vm = this;
+        vm.isAdminModCollapsed = false;
+        vm.isStaffModCollapsed = false;
         vm.venueAdminColumnDef = [
             { field: 'id', name: '', cellTemplate: 'app/admin/partials/buttons/edit-venue-detail-admin-button.html', width: 34 },
             { name: 'First', field: 'firstName', minWidth: 150, enableCellEdit: false },
@@ -22,20 +24,24 @@
             { name: 'Email', field: 'email', minWidth: 150, enableCellEdit: false  }
         ];
         //export
-        vm.editVenueAdminRow = editVenueAdminRow;
-        vm.editVenueStaffRow = editVenueStaffRow;
+        vm.toggleModule = toggleModule;
         vm.updateGrid = updateGrid;
 
         (function initController() {
             createAdminList(admin);
             createStaffList(staff);
         })();
-        function editVenueAdminRow(grid, row) {
-            $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
-        }
 
-        function editVenueStaffRow(grid, row) {
-            $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
+        function toggleModule (module) {
+           switch(module) {
+               case 'admin':
+                   vm.isAdminModCollapsed = !vm.isAdminModCollapsed;
+                   break;
+               case 'staff':
+                   vm.isStaffModCollapsed = !vm.isStaffModCollapsed;
+                   break;
+               default:
+           }
         }
         /*
         function getVenue (){

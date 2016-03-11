@@ -1,3 +1,104 @@
+<div class="page-wrapper container-fluid">
+    <div class="page-title">
+        <h1>Venues</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="dash-module"><!-- /module heading -->
+                <div class="module-heading module-bg-stable">
+                    <h3 class="module-title text-light text-uppercase">
+                        Registered
+                    </h3>
+                    <div class="module-nav-widget">
+                        <div class="divider"></div>
+                        <a ng-click="adminVenuesController.toggleModule()"><i class="fa fa-minus-square-o"></i></a>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="p-10">
+                    <button class="btn btn-primary" ng-click="adminVenuesController.addVenue()"> <span class="glyphicon glyphicon-plus"></span> ADD VENUE</button>
+                </div>
+                <div uib-collapse="adminVenuesController.isVenuesModCollapsed">
+                    <div class="module-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Edit</th>
+                                    <th>
+                                        <a href="#" ng-click="adminVenuesController.sortType = 'name'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                            Venue Name
+                                            <span ng-show="adminVenuesController.sortType == 'name' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="adminVenuesController.sortType == 'name' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+
+                                    <th>
+                                        <a href="#" ng-click="adminVenuesController.sortType = 'zipcode'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                            Zipcode
+                                            <span ng-show="adminVenuesController.sortType == 'zipcode' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="adminVenuesController.sortType == 'zipcode' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="#" ng-click="adminVenuesController.sortType = 'key'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                            Venue ID
+                                            <span ng-show="adminVenuesController.sortType == 'key' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="adminVenuesController.sortType == 'key' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                    </th>
+                                    <th><a href="#" ng-click="adminVenuesController.sortType = 'menu_id'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                        Menu Id
+                                        <span ng-show="adminVenuesController.sortType == 'menu_id' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="adminVenuesController.sortType == 'menu_id' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                                    </a></th>
+                                    <th>
+                                        <a href="#" ng-click="adminVenuesController.sortType = 'active';adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
+                                            Active
+                                            <span ng-show="adminVenuesController.sortType == 'active' && !adminVenuesController.sortReverse" class="fa fa-caret-down"></span>
+                                            <span ng-show="adminVenuesController.sortType == 'active' && adminVenuesController.sortReverse" class="fa fa-caret-up"></span>
+
+                                        </a>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="searchable">
+                                <tr ng-repeat="item in adminVenuesController.venueData | orderBy:adminVenuesController.sortType:adminVenuesController.sortReverse | filter:adminVenuesController.searchVenue">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <a href="#" ng-click="adminVenuesController.editVenue(item.key)">
+                                            <span class="fa fa-edit"></span>
+                                        </a>
+                                    </td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.zipcode}}</td>
+                                    <td>{{item.key}}</td>
+                                    <td>{{item.menu_id}}</td>
+                                    <td>
+                                <span ng-class="item.active == 1  ? 'text-success' : 'text-danger'">
+                                <i ng-class="item.active == 1 ? 'fa fa-check' : 'fa fa-warning'"></i>
+                                </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+     </div>
+</div>
+<footer class="page-footer text-align-center">
+    2016 © Social Order.
+</footer>
+<back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>
+<!--
 <div class="container">
     <div class="container-fluid">
         <h1>Venues</h1>
@@ -63,7 +164,7 @@
                         </th>
                     </tr>
                     </thead>
-                    <tbody class="searchable">                                                                                                                  <!-- ng-class="autoScroll ? 'icon-autoscroll' : 'icon-autoscroll-disabled'"> -->
+                    <tbody class="searchable">
                     <tr ng-repeat="item in adminVenuesController.venueData | orderBy:adminVenuesController.sortType:adminVenuesController.sortReverse | filter:adminVenuesController.searchVenue">
                         <td>{{$index}}</td>
                         <td>
@@ -86,7 +187,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <!--
+
                     <ul class="pagination">
                         <li ng-repeat="i in adminVenuesController.getPages(adminVenuesController.totalpages) track by $index" ng-class="{ active: $index == adminVenuesController.pageNumber}">
                         <a href="#" ng-click="adminVenuesController.setPage($index);">{{$index + 1}}</a>
@@ -110,9 +211,10 @@
                             </li>
                         </ul>
                     </nav>
-                    -->
+
                 </div>
             </div>
-        </div><!-- end venues -->
-    </div> <!-- end fluid-container -->
+        </div>
+    </div>
 </div>
+ -->

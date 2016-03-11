@@ -15,14 +15,16 @@
         vm.lastEntries;
         vm.staffCount;
         vm.usersCount;
+        vm.isVenueModCollapsed = false;
+        vm.isUserModCollapsed = false;
         vm.lastUserRegistrations = [];
         //export
         vm.editVenue =  editVenue;
+        vm.toggleModule = toggleModule;
         (function initController() {
             $log.log('AdminDashboardController init', vm)
             $log.log('AdminVenuesController init');
             venueService.getAllVenues().then(function (data) {
-                //$log.log('Retieved Venues :', data);
                 vm.venueCount = data.length;
                 vm.lastTenEntries = data.slice(data.length - 10, data.length);
                 $log.log('lastTenEntries ', vm.lastTenEntries);
@@ -31,6 +33,17 @@
             })
             createSystemUserList();
         })();
+        function toggleModule (module) {
+            switch(module) {
+                case 'users':
+                    vm.isUserModCollapsed = !vm.isUserModCollapsed;
+                    break;
+                case 'venue':
+                    vm.isVenueModCollapsed = !vm.isVenueModCollapsed;
+                    break;
+                default:
+            }
+        }
         function editVenue(key) {
             $state.go('admin.detail', {venueId: key});
         }

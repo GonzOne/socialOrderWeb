@@ -1,25 +1,19 @@
-<div class="container">
-    <div class="page-header">
-        <h1>Venue Admin</h1>
-    </div>
-    <create-profile creation-type='3' ctrl-fn="venueStaffController.updateGrid(value)"></create-profile>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="table-responsive">
-                <div id="venue_owner_grid" ui-grid="{ data: venueStaffController.venueAdmin, columnDefs: venueStaffController.venueAdminColumnDef}" class="grid"></div>
-            </div>
+<div class="page-wrapper container-fluid">
+        <div class="page-title">
+            <h1>Venue Staff</h1>
         </div>
-    </div><!-- end venue admin -->
-    <div class="page-header">
-        <h1>Venue Staff</h1>
-    </div>
-    <create-profile creation-type='2' ctrl-fn="venueStaffController.updateGrid(value)"></create-profile>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="table-responsive">
-                <div id="venue_staff_grid" ui-grid="{ data: venueStaffController.venueStaff, columnDefs: venueStaffController.venueStaffColumnDef}" class="grid"></div>
-            </div>
+
+        <div class="col-lg-6">
+            <so-email-module header-label="Venue Admins" list-data="venueStaffController.venueAdmin"></so-email-module>
         </div>
-    </div><!-- end venue admin -->
+
+        <div class="col-lg-6">
+            <so-email-module header-label="Staff" list-data="venueStaffController.venueStaff"></so-email-module>
+    </div>
+</div> <!-- end row -->
 </div>
+<footer class="page-footer text-align-center">
+    2016 © Social Order.
+</footer>
 <back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>

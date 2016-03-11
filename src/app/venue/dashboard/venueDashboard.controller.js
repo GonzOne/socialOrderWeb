@@ -9,6 +9,7 @@
     function VenueDashboardController(venue, appGlobalVars, profileService, $log) {
         var vm = this;
         vm.venue = venue;
+         //exports
 
         (function initController() {
             $log.log('VenueDashboardController : venue id : ', venue);
