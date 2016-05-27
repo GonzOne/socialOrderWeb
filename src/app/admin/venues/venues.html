@@ -20,6 +20,12 @@
                 <div class="p-10">
                     <button class="btn btn-primary" ng-click="adminVenuesController.addVenue()"> <span class="glyphicon glyphicon-plus"></span> ADD VENUE</button>
                 </div>
+
+                <div class="input-group p-10">
+                    <span class="input-group-addon">Filter</span>
+                    <input id="filter" type="text" class="form-control" placeholder="filter text" ng-model="adminVenuesController.searchVenue">
+                </div>
+
                 <div uib-collapse="adminVenuesController.isVenuesModCollapsed">
                     <div class="module-body">
                         <div class="table-responsive">
@@ -44,6 +50,7 @@
 
                                         </a>
                                     </th>
+
                                     <th>
                                         <a href="#" ng-click="adminVenuesController.sortType = 'key'; adminVenuesController.sortReverse = !adminVenuesController.sortReverse">
                                             Venue ID
