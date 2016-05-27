@@ -47,7 +47,7 @@ Besides simply installing everything, I recommend having or obtaining a **fair k
 
 ## Installation
 ```sh
-git clone --depth 1 https://github.com/GonzOne/angular2-sensor-app.git
+git clone https://github.com/GonzOne/socialOrderWeb.git
 
 # install the project's dependencies
 npm install
