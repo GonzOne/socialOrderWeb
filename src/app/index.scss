@@ -2,9 +2,30 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
  */
-$navbar-inverse-link-color: #5AADBB;
+
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $fa-font-path: "../../bower_components/font-awesome/fonts";
+
+$font-header: 'Cabin', 'Montserrat', Helvetica, Arial, sans-serif;
+$font-body: 'Lato', 'Montserrat', Helvetica, Arial, sans-serif;
+//
+$light: #ffffff;
+$stable :#dadada;
+$dark: #737373;
+$eggplant: #282f3c;
+$grey: #999999;
+$grey-hover: #555555;
+
+
+//
+$body-background-color: #EFEFEF;
+$input-border-color: #e6e6e6;
+$text-color: #000000;
+$navbar-inverse-link-color: #5AADBB;
+$light-background-color: $light;
+
+//
+$mobile-breakpoint: 40.063em;
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject
@@ -12,21 +33,110 @@ $fa-font-path: "../../bower_components/font-awesome/fonts";
  */
 // bower:scss
 // endbower
-@import "../../bower_components/font-awesome/scss/font-awesome";
+/***** General Styles *****/
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-family: $font-body;
+  color: $text-color;
+  background: $body-background-color;
+  min-width: 320px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  @include transition(all .3s);
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p {
+  font-family: $font-body;
+  color: #666;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+em {
+  font-weight: 600;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin box-shadow($box-shadow) {
+  box-shadow: $box-shadow;
+  -webkit-box-shadow: $box-shadow;
+  -moz-box-shadow: $box-shadow;
+  -ms-box-shadow: $box-shadow;
+  -o-box-shadow: $box-shadow;
+}
+
+@mixin transition($transition) {
+  transition: $transition;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+}
+/***** Mixins *****/
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin box-shadow($box-shadow) {
+  box-shadow: $box-shadow;
+  -webkit-box-shadow: $box-shadow;
+  -moz-box-shadow: $box-shadow;
+  -ms-box-shadow: $box-shadow;
+  -o-box-shadow: $box-shadow;
+}
+
+@mixin transition($transition) {
+  transition: $transition;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+}
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
 // injector
 // endinjector
+
+
+
 
 
 
