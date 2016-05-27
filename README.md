@@ -45,10 +45,14 @@ Besides simply installing everything, I recommend having or obtaining a **fair k
   - bower: `npm install --global bower` - http://bower.io/
 
 
-## Generator
-Everything else you need will be installed using:
+## Installation
 ```sh
-npm install 
+git clone --depth 1 https://github.com/GonzOne/angular2-sensor-app.git
+
+# install the project's dependencies
+npm install
+
+
 
 ### Run
 gulp serve
