@@ -49,10 +49,10 @@ Besides simply installing everything, I recommend having or obtaining a **fair k
 ```sh
 git clone https://github.com/GonzOne/socialOrderWeb.git
 
+cd socialOrderWeb
+
 # install the project's dependencies
 npm install
-
-
 
 ### Run
 gulp serve
