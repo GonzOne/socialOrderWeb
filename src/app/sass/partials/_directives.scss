@@ -1,0 +1,31 @@
+
+/* ========== widget=============== */
+.widget-panel {
+  padding: 40px 20px;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 20px;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.06),0 1px 0px 0 rgba(0,0,0,0.02);
+}
+.widget-bg-white {
+  background-color: #ffffff;
+}
+.widget-style {
+  padding-left: 30px;
+  i {
+    font-size: 48px;
+    float: right;
+    padding: 35px 35px 29px;
+    margin-top: -40px;
+    margin-right: -20px;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 28px;
+  }
+
+}
+/*============ add widget ================= */
+.add-widget-button{
+  padding:15px;
+}
