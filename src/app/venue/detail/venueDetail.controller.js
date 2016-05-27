@@ -16,23 +16,11 @@
         vm.errors = [];
         vm.place = null;
         vm.result;
-        vm.file;
         vm.uploadingImage = false;
         vm.uploadAlerts = [];
         vm.progress= 0;
         vm.status ='';
         vm.activeOptions = [{label: 'Online', val: 1 },{ label: 'Offline', val: 0 }];
-        vm.venueAdminColumnDef = [
-            { field: 'id', name: '', cellTemplate: 'app/admin/partials/buttons/edit-venue-detail-admin-button.html', width: 34 },
-            { name: 'First',field: 'firstName', minWidth: 150, enableCellEdit: false },
-            { name: 'Last', field: 'lastName', minWidth: 150, enableCellEdit: false  },
-            { name: 'Email', field: 'email', minWidth: 150, enableCellEdit: false  }];
-        vm.venueStaffColumnDef =[
-            { field: 'id', name: '', cellTemplate: 'app/admin/partials/buttons/edit-venue-detail-staff-button.html', width: 34 },
-            { name: 'First',field: 'firstName', minWidth: 150, enableCellEdit: false },
-            { name: 'Last', field: 'lastName', minWidth: 150, enableCellEdit: false  },
-            { name: 'Email', field: 'email', minWidth: 150, enableCellEdit: false  }
-        ]
         vm.typeOptions = [
             {label: 'Bar', val: 0},
             {label: 'Cafe', val: 1},
@@ -40,19 +28,11 @@
             {label: 'Dispensary', val: 3}
         ];
         vm.dataLoading;
-        vm.subNavButtons = [ {label: 'Back', style:'btn btn-link pull-left', action:'back', icon:true, iconStyle:'fa fa-chevron-left'},
-            {label: 'Venue', style:'btn btn-primary', action:'venue', icon:false, iconStyle:''},
-            {label: 'Admin', style:'btn btn-primary', action:'admin', icon:false, iconStyle:''},
-            {label: 'Staff', style:'btn btn-primary', action:'staff', icon:false, iconStyle:''},
-            {label: 'Menu', style:'btn btn-primary', action:'menu', icon:false, iconStyle:''}];
-
         vm.submitType = 'Update';
         //export
         vm.saveData = saveData;
-        vm.editVenueAdminRow = editVenueAdminRow;
-        vm.editVenueStaffRow = editVenueStaffRow;
-        vm.addMenu = addMenu;
-        vm.editMenu =  editMenu;
+        vm.editMenu = editMenu;
+        vm.addMenu =  addMenu;
         vm.updateGrid = updateGrid;
         vm.gotoAnchor = gotoAnchor;
         vm.deleteVenue = deleteVenue;
@@ -67,8 +47,8 @@
         }else{
             vm.isAdmin = false;
         }
-
-        if (vm.venue.menu_id  != ''){
+        $log.log('venue menu ', vm.venue.menu_id);
+        if (typeof vm.venue.menu_id  != 'undefined'){
             $log.log('venue has menu ');
             vm.menuActive = true;
 
@@ -197,12 +177,6 @@
               profileService.removeVenueAdminProfileById(ids[i]);
             }
         }
-        function editVenueAdminRow(grid,row) {
-            $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
-        }
-        function editVenueStaffRow(grid, row) {
-            $log.log('editVenueAdminRow : g ', grid, ' r: ', row)
-        }
         function addMenuIdToVenue (m_id) {
             $log.log('add menu key : ', m_id, 'to venue : ', vm.venue.key);
             venueService.setVenueMenu(vm.venue.key, m_id).then(function () {
@@ -218,7 +192,6 @@
 
         }
         function addMenu(){
-            //$state.go('admin.menu');
             blockUI.start();
             var tmpl = dataTemplates.getVenueMenuTmpl();
             tmpl.venue_id = vm.venue.key;
@@ -343,32 +316,28 @@
             //}
         }
 
-        function uploadFiles () {
+        function uploadFiles (files, event) {
 
-            $log.log('uploadFiles ', vm.file);
-            if (!vm.file) return;
+            $log.log('uploadFiles ', files, 'event ', event);
+            if (!files) return;
             vm.uploadingImage = true;
             Upload.upload({
                 url: KEYS.cloudinary.apiBase + KEYS.cloudinary.cloudName + '/upload',
                 data: {
                     upload_preset: KEYS.cloudinary.preset,
                     tags: 'mobile_upload',
-                    file: vm.file
+                    file: files[0]
                 }
             }).progress(function (e) {
                 vm.progress = Math.round((e.loaded * 100.0) / e.total);
                 vm.status = "Uploading... " + vm.progress + "%";
-                $log.log('loaded ', e.loaded, 'progress', vm.progress, 'status ', vm.status);
             }).success(function (data, status) {
-                //$rootScope.photos = $rootScope.photos || [];
-               // data.context = {custom: {photo: $scope.title}};
-               // file.result = data;
                 vm.uploadingImage = false;
                 $log.log('success ', data, 'status ', status)
                 vm.venuePic = data.url;
                 updateVenuesPhotoUrl(data.url);
                 vm.uploadAlerts.push({ type: 'success', msg: 'Success! ' + vm.file.name +' has been uploaded '});
-                vm.file = null;
+                vm.progress= 0;
             }).error(function (data, status) {
                 //file.result = data;
                 $log.log('error ', data, 'status ', status);
@@ -377,14 +346,15 @@
 
         }
         function updateVenuesPhotoUrl (file) {
-            venueService.setVenueProfilePic(appGlobalVars.getVenueId(), file).then(function () {
+            venueService.setVenueProfilePic(vm.venue.key, file).then(function () {
                 $log.log('updateVenuesPhotoUrl saved ');
             }, function (error) {
                 $log.log('updateVenuesPhotoUrl Error:', error);
             })
         }
         function updateGrid (val) {
-            $log.log('venueDetailController : updateGrid ', val)
+            $log.log('venueDetailController : updateGrid ', val) ;
+
             var vKey =  vm.venue.key;
             switch (val) {
                 case 'venue_admin':
@@ -409,6 +379,7 @@
                     break;
                 default:
             }
+
         }
 
     }
