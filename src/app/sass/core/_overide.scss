@@ -4,3 +4,129 @@
   background: $eggplant !important;
   height: 3px !important;
 }
+/***********bootstrap navigation overrides--*/
+.navbar-default {
+  font-family: 'Open Sans', sans-serif;
+  border:none;
+  border-radius: 0;
+  margin-bottom: 0;
+  width:100%;
+  min-height: 80px;
+  padding: 15px 0;
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+  background:#fff;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  color: #f99200 !important;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  color: #f99200 !important;
+  background-color: transparent;
+}
+.navbar-brand{
+  font-weight: 800;
+  color:#fff !important;
+  font-size: 30px;
+  line-height: 14px;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+  font-weight: 400;
+  font-size: 15px;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  color: #f99200;
+
+}
+/*transparent header*/
+.navbar-default.trans-before{
+  background-color:transparent;
+  box-shadow: none;
+  width:100%;
+}
+.navbar-default.trans-after{
+  background: #333;
+  border: 0;
+  width: 100%;
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+@media(max-width:767px){
+  .navbar-default.trans-before{
+    background-color: #333 !important;
+    border: 0 !important;
+    text-align: center;
+    width:100%;
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+.navbar-default.trans-before li a{
+  color:#fff;
+}
+.navbar-default.trans-before .navbar-brand{
+  color:#fff !important;
+}
+
+.one-page-static-wrap{
+  background: url(../img/showcase-2.jpg);
+}
+.one-page-static-wrap .static-text h1{
+  text-align: center;
+  padding: 250px 0;
+  color:#fff;
+  margin: 0;
+  font-weight: 800;
+  line-height: 60px;
+  text-transform: uppercase;
+}
+@media(max-width:767px){
+  .one-page-static-wrap .static-text h1{
+    padding: 150px 0;
+  }
+}
+.navbar-brand span{
+  font-size: 10px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/******** Tabs ******** /
+/* tab color */
+.nav-tabs>li>a {
+  background-color: $eggplant;
+  border-color: $eggplant;
+  color:$light;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: $dark;
+  background-color: $light;
+  border: 1px solid $light;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: $light;
+  background-color: #111111;
+}
+.nav-pills>li>a{
+  background-color: $eggplant;
+  border-color: $eggplant;
+  color:$light;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: $dark;
+  background-color: $stable;
+}

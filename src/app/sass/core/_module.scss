@@ -58,11 +58,159 @@
   background-color: rgb(48, 66, 105);
 
 }
+.module-bg-eggplant{
+  background-color: rgb(40, 47, 60);
+}
+.module-bg-divider{
+  background-color: rgb(218, 218, 218);
+}
 .text-light {
+  color: $light;
+}
+.text-dark{
+  color:$eggplant;
+}
+.detail-module{
+  margin-bottom: 20px;
+  background: $light;
+  transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.06),0 1px 0px 0 rgba(0,0,0,0.02);
+  .detail-heading {
+    padding: 20px 30px;
+    line-height: 38px;
+    min-height: 39px;
+    border-radius: 3px;
+    color: $light;
+    .detail-title{
+      float: left;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 0;
+      margin-top: 0;
+
+    }
+    .detail-nav-widget {
+      position: relative;
+      text-align: right;
+      float: right;
+      padding-left: 15px;
+      display: inline-block;
+      font-size: 15px;
+      line-height: 0px;
+
+      a {
+        color: #fff;
+        i {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+}
+.module-profile-img-upload {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  margin: 0px auto;
+  background-color: rgb(218, 218, 218);
+  background-size: cover;
+  background-position: center center;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  //@include border-radius(100px);
+
+  .mod-black-mask {
+    opacity: .5;
+    color: $light;
+    text-align: center;
+    @include border-radius(100px);
+    @include transition(opacity .3s);
+    .module-upload-text{
+      margin-top: 75px;
+      font-weight:600;
+      color:$light;
+      i{
+        font-size:24px;
+      }
+    }
+  }
+}
+
+.module-profile-img-upload:hover {
+  .mod-black-mask {
+    opacity: 1;
+    .module-upload-text{
+      color:$eggplant;
+      i{
+        font-size:24px;
+      }
+    }
+  }
+}
+.module-profile-box-image {
+  height: 280px;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
   color: #fff;
+  text-align: center;
+  cursor: pointer;
+
+
+  .module-profile-box-name-bar {
+    position: absolute;
+    bottom: 0;
+    padding: 18px 36px 18px 20px;
+    background-color: black;
+    opacity: 0.7;
+    width: 100%;
+
+    .module-profile-box-name{
+      font-size: 18px;
+      font-weight: 400;
+      color: white;
+      float:left;
+      padding: 5px 3% 5px;
+      text-align:left;
+      span {
+        font-size: 14px;
+        color:$light;
+      }
+      p {
+        font-size: 12px;
+        color:$light;
+      }
+    }
+  }
 }
 /***** Media Queries *****/
 
 @media (max-width: $mobile-breakpoint) {
+  .module-profile-img-upload {
+    width: 160px;
+
+  }
+
+  .module-profile-box-image {
+    .module-profile-box-name-bar {
+      .module-profile-box-name{
+        font-size: 14px;
+        span {
+          font-size: 12px;
+          color:$light;
+        }
+        p {
+          font-size: 10px;
+          color:$light;
+        }
+      }
+    }
+  }
+
 
 }
+
