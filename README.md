@@ -54,6 +54,9 @@ cd socialOrderWeb
 # install the project's dependencies
 npm install
 
+# install bower's dependencies
+bower install
+
 ### Run
 gulp serve
 
