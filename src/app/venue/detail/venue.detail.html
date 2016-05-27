@@ -1,7 +1,271 @@
+<div class="page-wrapper container-fluid">
+    <div class="page-title">
+        <h1>{{venueDetailController.venue.name}}</h1>
+    </div>
+        <div class="detail-module mt-20"><!-- /module heading -->
+            <div class="detail-heading module-bg-eggplant">
+                <h3 class="detail-title text-light text-uppercase">
+                    Venue Details
+                </h3>
+                <div class="detail-nav-widget" ng-show="venueDetailController.isAdmin">
+                    <div class="divider"></div>
+                    <a ng-click="venueDetailController.deleteVenue()"><i class="text-light fa fa-times"></i></a>
+                    <div class="divider"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <form id="venueForm" ng-submit="venueDetailController.saveData()" role="form">
+                <div class="form-group mt-20" ng-show="venueDetailController.isAdmin">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Venue Active :</label>
+                            <select class="form-control" ng-model="venueDetailController.venue.active" ng-options="activeOption.val as activeOption.label for activeOption  in venueDetailController.activeOptions"></select>
+                        </div>
+                        <div class="col-md-10">
+
+                            <div class="pt-25 text-align-left">
+                                <button ng-show="!venueDetailController.menuActive" class="btn btn-primary" ng-click="venueDetailController.addMenu()"> <span class="glyphicon glyphicon-plus"></span> ADD MENU</button>
+                                <button ng-show="venueDetailController.menuActive" class="btn btn-primary" ng-click="venueDetailController.editMenu()"> <span class="glyphicon glyphicon-pencil"></span> EDIT MENU</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group mt-20" show="venueDetailController.isAdmin">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Venue Type: </label>
+                            <select class="form-control" ng-model="venueDetailController.venue.type" ng-options="typeOption.val as typeOption.label for typeOption  in venueDetailController.typeOptions"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error': form.venue_name.$dirty && form.venue_name.$error.required }">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="control-label">Venue Name</label>
+                            <input type="text"  name="venue_name" id="venue_name" class="form-control" ng-model="venueDetailController.venue.name" />
+                            <span ng-show="form.venue_name.$dirty && form.venue_name.$error.required" class="help-block">Venue name is required</span>
+                        </div>
+
+                        <div class="col-md-4 selectContainer">
+                            <label class="control-label">Phone #</label>
+                            <input type="text" class="form-control" name="phone" ng-model="venueDetailController.venue.venue_phone"/>
+                        </div>
+                    </div>
+               </div>
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="control-label">City</label>
+                            <input type="text" class="form-control" name="city" ng-model="venueDetailController.venue.city"/>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">State</label>
+                            <select class="form-control" name="type" ng-model="venueDetailController.venue.state" >
+                                <option value="">Please select a state</option>
+                                <option ng-repeat='state in venueDetailController.states'>{{state.name}}</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Zipcode</label>
+                            <input type="text" class="form-control" name="zipcode" ng-model="venueDetailController.venue.zipcode"/>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="detail-heading module-bg-divider">
+                    <h3 class="detail-title text-dark text-uppercase">
+                        Primary Contact Information
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group mt-20">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="control-label">Contact Email</label>
+                            <input type="text" class="form-control" name="contact_email" ng-model="venueDetailController.venue.contact_email"/>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label">Phone #</label>
+                            <input type="text" class="form-control" name="phone" ng-model="venueDetailController.venue.contact_phone"/>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-heading module-bg-eggplant">
+                    <h3 class="detail-title text-light text-uppercase">
+                        Venue Profile
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group mt-20">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label">Venue Pic</label>
+                            <div class="overflow-hidden">
+                                    <div class="module-profile-img-upload" ng-if="!venueDetailController.venuePic" ng-style="{'background-image': 'url({{venueDetailController.venuePic}})'}" ngf-select="venueDetailController.uploadFiles($files, $event)" ng-accept="'image/*'" capture="camera">
+                                        <div class="mod-black-mask">
+                                            <p class="module-upload-text"><i class="fa fa-camera"></i><br>Upload </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="module-profile-box-image" ng-if="venueDetailController.venuePic" ng-style="{'background-image': 'url({{venueDetailController.venuePic}})'}" ngf-select="venueDetailController.uploadFiles($files, $event)" ng-accept="'image/*'" capture="camera">
+                                        <div class="module-profile-box-name-bar">
+                                            <div class="module-profile-box-name">
+                                                <span><strong>{{venueDetailController.venue.name}}</strong></span>
+                                                <p><i class="fa fa-map-marker"></i>  {{venueDetailController.venue.address}}, {{venueDetailController.venue.city}} {{venueDetailController.venue.zipcode}}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                             </div>
+                            <uib-progressbar ng-show="venueDetailController.uploadingImage" class="progress-striped active" value="venueDetailController.progress" type="info"><i>{{venueDetailController.progress}} / 100%</i></uib-progressbar>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="control-label">Venue Description</label>
+                            <textarea class="form-control" name="review" rows="4" ng-model="venueDetailController.venue.desc"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="control-label">Website:</label>
+                            <input type="text" class="form-control" name="website" ng-model="venueDetailController.venue.website_url"/>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="control-label">Facebook</label>
+                            <input type="text" class="form-control" name="facebook" ng-model="venueDetailController.venue.facebook_url"/>
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <label class="control-label">Twitter</label>
+                            <input type="text" class="form-control" name="twitter" ng-model="venueDetailController.venue.twitter_url"/>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-heading module-bg-divider">
+                    <h3 class="detail-title text-dark text-uppercase">
+                        Geo Location
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group mt-20">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="control-label">Auto-Complete PlaceID</label>
+                            <input class="form-control" placeholder="Enter venues address" force-selection="true" g-places-autocomplete  ng-change="venueDetailController.displayPlace()" ng-model="venueDetailController.place"/>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label">Place Id</label>
+                            <input type="text" class="form-control" name="placeId" ng-model="venueDetailController.venue.placeId"/>
+                        </div>
+                        <!--
+                        <div class="col-md-4">
+                            <label class="control-label">Lat & Lng</label>
+                            <pre>{{venueDetailController.result | json}}</pre>
+                        </div>
+                        -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="control-label">Latitude</label>
+                            <input type="text" class="form-control" name="lat" ng-model="venueDetailController.venue.lat"/>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="control-label">Longitude</label>
+                            <input type="text" class="form-control" name="lng" ng-model="venueDetailController.venue.lng"/>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12 text-align-center">
+                            <button type="submit" ng-disabled="form.$invalid || venueDetailController.dataLoading" class="btn btn-primary pull-right">{{venueDetailController.submitType}}</button>
+                            <img ng-if="login.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                    </div>
+                </div>
+
+             </form>
+
+        <div class="mt-20" ng-show="venueDetailController.isAdmin">
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <so-email-module header-label="Venue Admins" is-editable="true" creation-type="3" list-data="venueDetailController.venueAdmin" venue-id="venueDetailController.venue.key" ctrl-fn="venueDetailController.updateGrid(value)"></so-email-module>
+                </div>
+
+                <div class="col-lg-6">
+                    <so-email-module header-label="Staff" is-editable="true" creation-type="2" list-data="venueDetailController.venueStaff" venue-id="venueDetailController.venue.key" ctrl-fn="venueDetailController.updateGrid(value)"></so-email-module>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+
+</div>
+
+<footer class="page-footer text-align-center">
+    2016 © Social Order.
+</footer>
+<back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>
+<!--
+
+<div class="form-group">
+      <div class="row">
+
+          <div class="col-md-4">
+
+          </div>
+
+          <div class="col-md-4">
+
+          </div>
+      </div>
+</div>
+
 <sub-nav show="venueDetailController.isAdmin" buttons="venueDetailController.subNavButtons" ctrl-fn="venueDetailController.gotoAnchor(value)"></sub-nav>
-<!-- Container -->
 <div class="container">
-   <!-- Marketing -->
    <section>
 
         <div class="jumbotron" ng-show="!venueDetailController.isAdmin">
@@ -11,8 +275,7 @@
         </div>
 
    </section>
-   <!-- //Marketing -->
-   <!-- Venue Details -->
+
    <section id="venue">
    <button ng-show="venueDetailController.deleteEnabled" class="btn btn-danger pull-right" ng-click="venueDetailController.deleteVenue()">Delete</button>
         <div class="page-header">
@@ -116,11 +379,6 @@
                         <label class="control-label">Auto-Complete PlaceID</label>
 
                             <input class="form-control" placeholder="Enter venues address" force-selection="true" g-places-autocomplete  ng-change="venueDetailController.displayPlace()" ng-model="venueDetailController.place"/>
-
-                        <!--
-                        <h5>Venues Lat & Lng:</h5>
-                        <pre>{{venueDetailController.result | json}}</pre>
-                        -->
                     </div>
                     <div class="col-xs-6">
                         <label class="control-label">Place Id</label>
@@ -149,18 +407,7 @@
                     </div>
                 </div>
             </div>
-        <!--
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label">Auto-Populate</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control"><span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="venueDetailController.getLatLng()">Get</button></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+
             <div class="page-header">
                 <h1><small>Profile</small></h1>
             </div>
@@ -182,7 +429,7 @@
             </div>
         </form>
 
-   </section><!-- //Venue Details -->
+   </section>
 
    <section>
        <div class="page-header">
@@ -193,7 +440,7 @@
                    <div class="panel-heading"><strong>Upload File</strong> <small>Dimensions 200x150</small></div>
                    <div class="panel-body">
 
-                       <!-- Standard Form -->
+
                        <h4>Select files from your computer</h4>
                        <div class="form-inline">
                            <div class="form-group">
@@ -205,24 +452,24 @@
                        <div class="thumbnail mt-25" ng-show="venueDetailController.venuePic">
                            <img class="img-responsive" ng-src="{{venueDetailController.venuePic}}" width="200" alt="venue image">
                        </div>
-                       <!-- Drop Zone
+
                        <h4>Or drag and drop files below</h4>
                        <div class="upload-drop-zone" id="drop-zone" ngf-drop  ng-model="venueDetailController.file"
                             ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
                             accept="image/*" ngf-max-size="1MB">
                            Just drag and drop files here
                        </div>
-                       -->
-                       <!-- Progress Bar
+
+
                        <div class="progress">
 
                            <div class="progress-bar" role="progressbar" aria-valuenow="venueDetailController.progress" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                                <span class="sr-only">{{venueDetailController.status}}</span>
                            </div>
                        </div>
-                        -->
+
                        <uib-progressbar ng-show="venueDetailController.uploadingImage" class="progress-striped active" value="venueDetailController.progress" type="info"><i>{{venueDetailController.progress}} / 100%</i></uib-progressbar>
-                       <!-- Upload Finished -->
+
                        <div class="js-upload-finished" ng-show="venueDetailController.uploadAlerts.length >0">
                            <h3>Processed files</h3>
                            <div class="list-group">
@@ -235,7 +482,6 @@
 
    </section>
 
-   <!-- Venue Admin -->
    <section id="admin" ng-show="venueDetailController.isAdmin">
 
             <div class="page-header">
@@ -252,9 +498,7 @@
                 </div>
             </div>
 
-   </section><!-- //Venue Admin -->
-
-   <!-- Venue Staff -->
+   </section>
    <section id="staff" ng-show="venueDetailController.isAdmin">
 
         <div class="page-header">
@@ -271,9 +515,7 @@
             </div>
         </div>
 
-   </section><!-- //Venue Staff -->
-
-   <!-- Venue Menu -->
+   </section>
    <section id="menu" ng-show="venueDetailController.isAdmin">
 
         <div class="page-header">
@@ -285,7 +527,9 @@
                 <button ng-show="venueDetailController.menuActive" class="btn btn-primary" ng-click="venueDetailController.editMenu()"> <span class="glyphicon glyphicon-pencil"></span> EDIT</button>
             </div>
         </div>
-   </section><!-- //Venue Menu -->
+   </section>
 
-</div><!-- //Container -->
+</div>
+
 <back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>
+-->
