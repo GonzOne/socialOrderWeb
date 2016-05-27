@@ -80,6 +80,9 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 0;
   vertical-align: baseline;
 }
+:focus {
+  outline: 0 !important
+}
 @mixin border-radius($radius) {
   border-radius: $radius;
   -webkit-border-radius: $radius;
