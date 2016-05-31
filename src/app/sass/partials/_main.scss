@@ -1,169 +1,21 @@
-/************************image hover effect*******************/
-
-.item-img-wrap{
-  position: relative;
+.one-page-static-wrap{
+  background: url(../assets/images/showcase-2.jpg);
+}
+.one-page-static-wrap .static-text h1{
   text-align: center;
-  overflow: hidden;
-
-}
-.item-img-wrap img{
-  -webkit-transition:all 200ms linear;
-  -moz-transition:all 200ms linear;
-  -o-transition:all 200ms linear;
-  -ms-transition:all 200ms linear;
-  transition:all 200ms linear;
-}
-.item-img-overlay{
-  position: absolute;
-  width:100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-.item-img-overlay span{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: url(../img/plus.png) no-repeat center center rgba(108, 168, 255, 0.7);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  opacity: 0;
-  -webkit-transition: opacity 250ms linear;
-  transition: opacity 250ms linear;
-}
-
-.item-img-wrap:hover .item-img-overlay span{
-  opacity: 1;
-}
-.item-img-wrap:hover img{
-  -moz-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  transform: scale(1.1);
-}
-/* =-=-=-=-= Upsell section =-=-=-=-=- */
-.upsell{
-  background-color:#000;
-}
-.upsell-pod {
-  padding:10px 5px 15px 20px;
-  text-align:center;
+  padding: 250px 0;
   color:#fff;
+  margin: 0;
+  font-weight: 800;
+  line-height: 60px;
+  text-transform: uppercase;
 }
-.upsell-pod-icon{
-  width:80px;
-  height:80px;
-}
-/* =-=-=-=-=-=-= Beta Section =-=-=-=-=-=-= */
-.beta-section{
-  background-color:#000;
-  width:100%;
-  color:#fff;
-}
-.beta-form{
-  padding: 20px 50px 75px;
-}
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-  margin-bottom: 4rem;
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
-.carousel-item {
-  height: 32rem;
-  background-color: #777;
-}
-.carousel-item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 32rem;
-}
-
-.carousel-indicators {
-  top: 1.5rem;
-  right: 1.5rem;
-  bottom: auto;
-  left: auto;
-  width: 1rem;
-  margin-left: 0;
-}
-
-.carousel-indicators > li {
-  margin-bottom: .25rem;
-}
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
-}
-.row-upsell {
-  padding:35px;
-  background-color: #000;
-}
-.row-marketing {
-  padding: 35px;
-  background-color: #000;
-  border: 1px solid #DDD;
-}
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -.05rem;
-}
-
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 40em) {
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
-
-  .featurette-heading {
-    font-size: 50px;
+@media(max-width:767px){
+  .one-page-static-wrap .static-text h1{
+    padding: 150px 0;
   }
 }
 
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
-  }
-}
 /*************parallax*************/
 .parallax {
   background-position: 0 0;
@@ -174,13 +26,11 @@
   background-attachment: fixed;
 
 }
-
-
 /******************services****************/
 /*service box*/
 .service-box h4 i{
   margin-right: 10px;
-  color:#f99200;
+  color:#3b0102;
   font-size: 27px;
 }
 /*progress rounded*/
@@ -218,94 +68,6 @@
   color:#fff;
   margin-bottom: 0px;
 }
-
-/**************work and portfolio whole*******/
-#portfolio{
-  background-color: #d4d4d4;
-}
-/* mouse grab icon */
-.grabbing {
-  cursor:url(../img/grabbing.png) 8 8, move !important;
-}
-
-.portfolio{
-  padding: 60px 0;
-  background-color: #f5f4f4;
-}
-.work-desc{
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-}
-.work-desc h5{
-  margin: 0px;
-  display: inline-block;
-  font-size: 15px;
-}
-.work-desc i{
-  width:32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
-  color:#fff;
-  background-color: #f99200;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  margin-right: 30px;
-
-}
-.owl-spaced .owl-item > div{
-  margin: 5px;
-}
-
-#grid .mix{
-  opacity: 0;
-  display: none;
-}
-.portfolio-filters{
-  margin-bottom: 40px;
-  margin-left: 0px;
-}
-.portfolio-filters li{
-  padding: 4px 10px;
-  background-color: #f5f5f5;
-  color:#777;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-}
-.portfolio-filters li:hover{
-  background-color: #f99200;
-  color:#fff;
-}
-.portfolio-filters li.active{
-  background-color: #f99200;
-  color:#fff;
-}
-
-
-/*testimonials parallax*/
-
-.testimonials{
-  background: url(../img/showcase-3.jpg);
-  padding: 50px 0;
-
-}
-.testimonials h4{
-  color:#fff;
-  font-weight: 300;
-}
-.testimonials  h4 i{
-  color:#f99200;
-}
-.testimonials p{
-  color:#f99200;
-}
-
 /************************************************* css for footers****************************************/
 
 
@@ -391,7 +153,7 @@
 
 /*contact us*/
 #contact-text{
-  background: url(../img/showcase-4.jpg);
+  background: url(../assets/images/showcase-4.jpg);
 }
 #contact-text h1{
   font-weight: 300;
@@ -440,14 +202,14 @@
   color:#969696;
 }
 .address-info li i{
-  color:#f99200;
+  color:#3b0102;
   margin-right: 5px;
 }
 .address-info li a{
   color:#969696;
 }
 .address-info li a:hover{
-  color:#f99200;
+  color:#3b0102;
 }
 .popular-post li{
   padding-bottom: 20px;
@@ -472,7 +234,7 @@
   color:#666;
 }
 .popular-desc h5 a:hover{
-  color:#f99200;
+  color:#3b0102;
 }
 .popular-desc h6{
   color:#777;
@@ -542,7 +304,7 @@ span.popular-tag{
   top: 0;
   padding: 1px 6px;
   color:#fff;
-  background-color: #f99200;
+  background-color: #3b0102;
   font-size: 10px;
 }
 .narani-price-title.popular-title{
@@ -646,7 +408,7 @@ span.center-line{
   display: inline-block;
   width:60px;
   height: 1px;
-  background-color: #f99200;
+  background-color: #3b0102;
   text-align: center;
 }
 /****progress bars****/
