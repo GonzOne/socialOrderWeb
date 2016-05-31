@@ -1,12 +1,11 @@
 (function() {
   'use strict';
-
   angular
     .module('socialOrderWeb')
-    .controller('MainController', MainController);
+    .controller('MainController', MainController)
 
   /** @ngInject */
-  function MainController($log) {
+  function MainController($log, $window) {
     var vm = this;
     vm.beta = {name:'', email:''};
     vm.slideInterval = 5000;
@@ -21,7 +20,15 @@
 
      function sendInvite() {
        $log.log('sendInvite name ', vm.beta.name , ' email : ', vm.beta.email);
-    }
+     }
+
+     angular.element($window).scroll(function() {
+          if ($window.pageYOffset > 100) {
+              angular.element('.trans-before').addClass('trans-after');
+          } else {
+              angular.element('.trans-before').removeClass('trans-after');
+          }
+      });
 
       // exports
       vm.sendInvite = sendInvite;
