@@ -42,7 +42,7 @@
   font-size: 15px;
 }
 .navbar-default .navbar-nav>li>a:hover {
-  color: #3b0102;
+  color: #000;
 
 }
 /*transparent header*/
@@ -75,30 +75,6 @@
 }
 .navbar-default.trans-before .navbar-brand{
   color:#fff !important;
-}
-
-.one-page-static-wrap{
-  background: url(../img/showcase-2.jpg);
-}
-.one-page-static-wrap .static-text h1{
-  text-align: center;
-  padding: 250px 0;
-  color:#fff;
-  margin: 0;
-  font-weight: 800;
-  line-height: 60px;
-  text-transform: uppercase;
-}
-@media(max-width:767px){
-  .one-page-static-wrap .static-text h1{
-    padding: 150px 0;
-  }
-}
-.navbar-brand span{
-  font-size: 10px;
-  vertical-align: middle;
-  text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
 }
 
 /******** Tabs ******** /
