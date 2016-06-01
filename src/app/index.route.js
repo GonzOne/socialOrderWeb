@@ -26,7 +26,7 @@
             url: '/register',
             templateUrl: 'app/register/register.html',
             controller: 'RegisterController',
-            controllerAs: 'register'
+            controllerAs: 'registerController'
 
         })
         .state('admin', {
