@@ -65,7 +65,7 @@
                 $log.log('onDisplayChange', val);
                 vm.product.active = val;
             }
-            function addSparklinewine (tmpl) {
+            function addSparklingwine (tmpl) {
                 $log.log('addSparklinewine ', tmpl);
                 menuService.addSparklingWine(appGlobalVars.getMenuId(), tmpl).then(function (b_id) {
                     $log.log('sparkling wine added to db successfuly',b_id);
@@ -106,6 +106,20 @@
                     $log.log('creating sparkling wine returned ', error);
                 })
             }
+            function addChampagne (tmpl) {
+                $log.log('addSparklinewine ', tmpl);
+                menuService.addChampagne(appGlobalVars.getMenuId(), tmpl).then(function (b_id) {
+                    $log.log('champagne added to db successfuly',b_id);
+                    vm.ctrlFn({value : 'champagne'})
+                    blockUI.stop();
+                    resetForm();
+                    toggleForm();
+                }, function (error) {
+
+                    blockUI.stop();
+                    $log.log('creating sparkling wine returned ', error);
+                })
+            }
             function addWineItem() {
                 $log.log('dir. addWineItem ',vm.wineType);
                 blockUI.start();
@@ -118,20 +132,23 @@
                 tmpl.country = vm.product.country;
                 tmpl.year = vm.product.year;
                 tmpl.cost = vm.product.cost;
-                tmpl.bottle_cost = vm.product.bottle_cost;
+                tmpl.glass_cost = vm.product.glass_cost;
                 tmpl.bottle_cost = vm.product.bottle_cost;
                 tmpl.display = vm.product.active;
                 tmpl.type = vm.wineType;
 
                 switch (vm.wineType) {
                     case 'sparkling':
-                        addSparklinewine(tmpl)
+                        addSparklingwine(tmpl)
                         break;
                     case 'white':
                         addWhitewine(tmpl)
                         break;
                     case 'red':
                         addRedwine(tmpl)
+                        break;
+                    case 'champagne':
+                        addChampagne(tmpl);
                         break;
                     default:
                 }

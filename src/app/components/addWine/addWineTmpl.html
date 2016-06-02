@@ -16,7 +16,7 @@
                 <div class="col-sm-3">
                     <div ng-class="{ 'has-error': form.glass.$dirty && form.glass.$error.required }">
                         <label for="glass">Glass Price</label>
-                        <input type="text" placeholder="0.00" name="glass" id="cost" class="form-control" ng-model="vm.product.cost" required />
+                        <input type="text" placeholder="0.00" name="glass" id="cost" class="form-control" ng-model="vm.product.glass_cost" required />
                         <span ng-show="form.glass.$dirty && form.glass.$error.required" class="help-block">Glass price is required</span>
                     </div>
                 </div>
