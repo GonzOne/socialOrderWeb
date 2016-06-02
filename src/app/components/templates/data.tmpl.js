@@ -172,11 +172,9 @@
             state: '',
             zipcode: '',
             venue_phone: '',
-            menu_id: '',
             contact_phone:'',
             contact_email:'',
             photo_url: '',
-            hours_id: '',
             lat: '',
             lng: '',
             placeId: '',//google place id
