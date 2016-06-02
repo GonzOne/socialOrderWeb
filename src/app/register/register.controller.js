@@ -6,23 +6,24 @@
         .controller('RegisterController', RegisterController);
 
     /** @ngInject */
-    function RegisterController($state, dataTemplates, Auth, appGlobalVars, profileTemplate, profileService, venueService, blockUI,  $log) {
+    function RegisterController($state, dataTemplates, Auth, AuthService, appGlobalVars, profileTemplate, profileService, venueService, blockUI,  $log) {
         var vm = this;
+        vm.confirmPassword;
         vm.error =[];
         vm.dataLoading;
         vm.user = profileTemplate.getProfileTmpl();
         $log.log('register controller loaded ',vm)
 
-        function createMetaProfile(uid) {
+        function createMetaProfile(uid, key) {
             var metaProfile = dataTemplates.getMetaTmpl();
             metaProfile.uid = uid;
             metaProfile.role = 3;
+            metaProfile.venue_id = key;
              $log.log('register controller ',metaProfile)
             profileService.createMetaProfile(metaProfile).then(function (uid) {
                 $log.log('meta profile created',uid);
-                blockUI.stop();
-                createRoleProfile(metaProfile)
-                //$state.go('venue.dashboard');
+                appGlobalVars.setUserRole(metaProfile.role)
+                createRoleProfile(metaProfile);
             }, function (error) {
                 blockUI.stop();
                 $log.log('createProfile returned ', error);
@@ -30,7 +31,7 @@
         }
         function createRoleProfile (metaProfile) {
             $log.log('createRoleProfile for ',metaProfile);
-            appGlobalVars.setUserRole(metaProfile.role)
+
             switch (metaProfile.role) {
                 case 3:
                     var venueTmpl = dataTemplates.getVenueAdminTmpl();
@@ -38,11 +39,11 @@
                     venueTmpl.firstName =  vm.user.firstName;
                     venueTmpl.lastName = vm.user.lastName;
                     venueTmpl.email = vm.user.email;
-
+                    venueTmpl.venue_id = metaProfile.venue_id;
                     profileService.createVenueAdminProfile(venueTmpl).then(function (uid) {
                         $log.log('meta profile created',uid);
                         blockUI.stop();
-                        $state.go('venue.dashboard');
+                        $state.go('venue.dashboard', {venueId: venueTmpl.venue_id});
                     }, function (error) {
                         blockUI.stop();
                         $log.log('createProfile returned ', error);
@@ -58,7 +59,23 @@
                 $log.log(authData);
                 appGlobalVars.setUserId(authData.uid);
                 appGlobalVars.setUserLoggedIn(true);
-                createMetaProfile(authData.uid);
+
+                var tmpl = dataTemplates.getVenueTmpl();
+                tmpl.uid = authData.uid;
+                tmpl.firstName =  vm.user.firstName;
+                tmpl.lastName = vm.user.lastName;
+                tmpl.email = vm.user.email;
+                venueService.createVenue(tmpl).then(function (key) {
+
+                    createMetaProfile(appGlobalVars.getUserId(),key);
+
+                }, function (error) {
+                    vm.dataLoading = false;
+                    blockUI.stop();
+                    $log.log('venue returned ', error);
+                    //display message
+                });
+
             }, function (error) {
                 vm.dataLoading = false;
                 blockUI.stop();
@@ -113,8 +130,11 @@
             });
 
         }
-
+        function closeAlert(index) {
+            vm.alerts.splice(index, 1);
+        }
         // exports
         vm.register = register;
+        vm.closeAlert = closeAlert;
     }
 })();
