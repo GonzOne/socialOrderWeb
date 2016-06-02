@@ -14,6 +14,7 @@
         vm.canBeers;
         vm.bottleBeers;
         vm.cocktails;
+        vm.champagne;
         vm.sparklingwine;
         vm.whitewine;
         vm.redwine;
@@ -53,6 +54,7 @@
         vm.editWineRow = editWineRow;
         vm.editCocktailRow = editCocktailRow;
         vm.gotoAnchor = gotoAnchor;
+        vm.tabSelect = tabSelect;
         $log.log('VenueMenuController : menu ', menu, 'role ', role);
         if(vm.role === 0) {
             vm.isAdmin = true;
@@ -63,18 +65,48 @@
         (function initController() {
             gotoAnchor('navTop');
             $log.log('initController venue menu ', vm.menu);
-            //add list of items to grids
+            //load first tab
             getDraftBeers();
-            getCanBeers();
-            getBottledBeers();
-            //
-            getSparklingWines();
-            getWhiteWines();
-            getRedWines();
-            //
-            getCocktails();
 
         })();
+        function tabSelect (val) {
+            $log.log('tabSelect ', val);
+            blockUI.start();
+            switch (val) {
+                case 'draft':
+                    getDraftBeers();
+                    break;
+                case 'can':
+                    getCanBeers();
+                    break;
+                case 'bottle':
+                    getBottledBeers();
+                    break;
+                case 'cocktail':
+                    getCocktails();
+                    break;
+                case 'champagne':
+                    getChampagne();
+                    break;
+                case 'sparkling':
+                    getSparklingWines();
+                    break;
+                case 'white':
+                    getWhiteWines();
+                    break;
+                case 'red':
+                    getRedWines();
+                    break;
+                case 'tap':
+                    getTapWines();
+                    break;
+                case 'recommended':
+                    getRecommended();
+                    break;
+                default:
+
+            }
+        }
         function gotoAnchor (val){
             $log.log('gotoAnchor ', val)
             if(val === 'back') {
@@ -185,6 +217,9 @@
                 case 'cocktail':
                     getCocktails();
                     break;
+                case 'champagne':
+                    getChampagne();
+                    break;
                 case 'sparkling':
                     getSparklingWines();
                     break;
@@ -197,11 +232,18 @@
                 default:
             }
         }
+        function getTapWines(){
+            blockUI.stop();
+        }
+        function getRecommended(){
+            blockUI.stop();
+        }
         function getDraftBeers() {
             //var m = appGlobalVars.getMenuId();
             menuService.getDraftBeersByMenuId(vm.menu.menu_id).then(function (draftBeerList) {
                 $log.log('getDraftBeersByVenueId returned ', draftBeerList)
                 vm.draftBeers = draftBeerList;
+                blockUI.stop();
             }, function (error) {
                 vm.draftBeers = [];
                 $log.log('getDraftBeersByVenueId ', error)
@@ -212,6 +254,7 @@
             menuService.getCanBeersByMenuId(vm.menu.menu_id).then(function (canBeerList) {
                 $log.log('getCanBeersByMenuId returned ', canBeerList)
                 vm.canBeers = canBeerList;
+                blockUI.stop();
             }, function (error) {
                 vm.canBeers = [];
                 $log.log('getCanBeersByMenuId ', error)
@@ -222,9 +265,21 @@
             menuService.getBottleBeersByMenuId(vm.menu.menu_id).then(function (bottleBeerList) {
                 $log.log('getBottleBeersByMenuId returned ', bottleBeerList)
                 vm.bottleBeers = bottleBeerList;
+                blockUI.stop();
             }, function (error) {
                 vm.bottleBeers =[];
                 $log.log('getBottleBeersByMenuId ', error)
+            })
+        }
+        function getChampagne() {
+            //var m = appGlobalVars.getMenuId();
+            menuService.getChampagneByMenuId(vm.menu.menu_id).then(function (champagneList) {
+                $log.log('getChampagneByMenuId returned ', champagneList)
+                vm.champagne = champagneList;
+                blockUI.stop();
+            }, function (error) {
+                vm.champagne =[];
+                $log.log('getChampagneByMenuId ', error)
             })
         }
         function getSparklingWines() {
@@ -232,6 +287,7 @@
             menuService.getSparklingWineByMenuId(vm.menu.menu_id).then(function (sparklingWineList) {
                 $log.log('getSparklingWineByMenuId returned ', sparklingWineList)
                 vm.sparklingwine = sparklingWineList;
+                blockUI.stop();
             }, function (error) {
                 vm.sparklingwine =[];
                 $log.log('getSparklingWineByMenuId ', error)
@@ -242,6 +298,7 @@
             menuService.getWhiteWineByMenuId(vm.menu.menu_id).then(function (whiteWineList) {
                 $log.log('getWhiteWineByMenuId returned ', whiteWineList)
                 vm.whitewine = whiteWineList;
+                blockUI.stop();
             }, function (error) {
                 vm.sparklingwine =[];
                 $log.log('getWhiteWineByMenuId ', error)
@@ -252,6 +309,7 @@
             menuService.getRedWineByMenuId(vm.menu.menu_id).then(function (redWineList) {
                 $log.log('getRedWineByMenuId returned ', redWineList)
                 vm.redwine = redWineList;
+                blockUI.stop();
             }, function (error) {
                 vm.redwine =[];
                 $log.log('getRedWineByMenuId ', error)
@@ -262,6 +320,7 @@
             menuService.getCocktailsByMenuId(vm.menu.menu_id).then(function (cocktailList) {
                 $log.log('getCocktailsByMenuId returned ', cocktailList)
                 vm.cocktails  = cocktailList;
+                blockUI.stop();
             }, function (error) {
                 vm.cocktails  =[];
                 $log.log('getRedWineByMenuId ', error)

@@ -1,172 +1,220 @@
-<sub-nav show="venueMenuController.isAdmin" buttons="venueMenuController.subNavButtons" ctrl-fn="venueMenuController.gotoAnchor(value)"></sub-nav>
 <div class="container">
+<uib-tabset>
+    <uib-tab index="0" heading="Draft Beer" select="venueMenuController.tabSelect('draft')">
+        <div class="container-fluid light-tab-bg">
+            <div class="row">
 
-    <div class="container-fluid">
+                <div class="page-header">
+                    <h1>Draft Beer Menu</h1>
+                </div>
 
-         <div class="row">
-            <div class="page-header">
-                <h1>Menu</h1>
-            </div>
-         </div>
-     <!-- content -->
-             <section id="draftBeer">
-                     <div class="row">
-                        <div>
-                            <div class="page-header">
-                                <h1>Draft Beer</h1>
+                <div class="container">
+                    <add-beer beer-type='draft' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.draftBeers, columnDefs: venueMenuController.beerColumnDef }" class="grid"></div>
                             </div>
-
                         </div>
-                         <add-beer beer-type='draft' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
-                         <div class="row">
-                             <div class="col-lg-12">
-                                 <div class="table-responsive">
-                                     <div id="admin_grid" ui-grid="{ data: venueMenuController.draftBeers, columnDefs: venueMenuController.beerColumnDef }" class="grid"></div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-             </section>
-             <section  id="bottleBeer">
-                 <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>Bottled Beer</h1>
-                        </div>
-
                     </div>
-                     <add-beer beer-type='bottle' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
-                     <div class="row">
-                         <div class="col-lg-12">
-                             <div class="table-responsive">
-                                 <div id="admin_grid" ui-grid="{ data: venueMenuController.bottleBeers, columnDefs: venueMenuController.beerColumnDef}" class="grid"></div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </section>
+                </div>
 
-             <section id="canBeer">
-                 <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>Can Beer</h1>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Bottle Beer" select="venueMenuController.tabSelect('bottle')">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="page-header">
+                    <h1>Bottle Beer Menu</h1>
+                </div>
+                <div class="container">
+                    <add-beer beer-type='bottle' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.bottleBeers, columnDefs: venueMenuController.beerColumnDef}" class="grid"></div>
+                            </div>
                         </div>
-
                     </div>
-                     <add-beer beer-type='can' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
-                     <div class="row">
-                         <div class="col-lg-12">
-                             <div class="table-responsive">
-                                 <div id="admin_grid" ui-grid="{ data: venueMenuController.canBeers, columnDefs: venueMenuController.beerColumnDef}" class="grid"></div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </section>
+                </div>
 
-             <section id="sparklingWine" >
-                 <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>Sparkling Wine</h1>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="2" heading="Can Beer" select="venueMenuController.tabSelect('can')">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="page-header">
+                    <h1>Can Beer Menu</h1>
+                </div>
+                <div class="container">
+                    <add-beer beer-type='can' ctrl-fn="venueMenuController.updateGrid(value)"></add-beer>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.canBeers, columnDefs: venueMenuController.beerColumnDef}" class="grid"></div>
+                            </div>
                         </div>
-
                     </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="3" heading="Champagne" select="venueMenuController.tabSelect('champagne')">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Champagne Menu</h1>
+                </div>
 
-                     <add-wine wine-type='sparkling'
-                               brand-placeholder="ex: Domaine Chandon"
-                               brand-desc="ex: Crisp and lively, with aromas of green apple, cinnamon and vanilla that lead to appealing flavors of tropical fruit and spicy anise."
-                               brand-varietal="ex: Pinot noir"
-                               brand-region="ex: Napa Valley"
-                               brand-country="ex: USA"
-                               brand-year="ex: 2012"
-                               ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
+                <div class="container">
+                    <add-wine wine-type='champagne'
+                              brand-placeholder="ex: Domaine Chandon"
+                              brand-desc="ex: Crisp and lively, with aromas of green apple, cinnamon and vanilla that lead to appealing flavors of tropical fruit and spicy anise."
+                              brand-varietal="ex: Pinot noir"
+                              brand-region="ex: Napa Valley"
+                              brand-country="ex: USA"
+                              brand-year="ex: 2012"
+                              ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
 
-                     <div class="row">
-                         <div class="col-lg-12">
-                             <div class="table-responsive">
-                                 <div id="admin_grid" ui-grid="{ data: venueMenuController.sparklingwine, columnDefs: venueMenuController.wineColumnDef }" class="grid"></div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </section>
-
-             <section id="whiteWine" >
-                 <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>White Wine</h1>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.champagne, columnDefs: venueMenuController.wineColumnDef }" class="grid"></div>
+                            </div>
                         </div>
-
                     </div>
-                     <add-wine wine-type='white'
-                               brand-placeholder="ex: Garry Farrel Chardonnay"
-                               brand-desc="ex: The Bacigalupi family grapes garnered fame from the winning entry in the historic 1976 Paris Tasting. Some of the oldest vines from 1967 were sourced for our new Bacigalupi Chardonnay wine."
-                               brand-varietal="ex: Chardonnay"
-                               brand-region="ex: Russian River Valley"
-                               brand-country="ex: USA"
-                               brand-year="ex: 2013"
-                               ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="4" heading="Sparkling Wine" select="venueMenuController.tabSelect('sparkling')">
+        <div class="container-fluid">
+            <div class="row">
 
-                     <div class="row">
-                         <div class="col-lg-12">
-                             <div class="table-responsive">
-                                 <div id="admin_grid" ui-grid="{ data: venueMenuController.whitewine, columnDefs: venueMenuController.wineColumnDef  }" class="grid"></div>
-                             </div>
-                         </div>
-                     </div>
-                  </div>
-             </section>
+                <div class="page-header">
+                    <h1>Sparkling Wine Menu</h1>
+                </div>
 
-             <section id="redWine">
-                  <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>Red Wine</h1>
+                <div class="container">
+                    <add-wine wine-type='sparkling'
+                              brand-placeholder="ex: Domaine Chandon"
+                              brand-desc="ex: Crisp and lively, with aromas of green apple, cinnamon and vanilla that lead to appealing flavors of tropical fruit and spicy anise."
+                              brand-varietal="ex: Pinot noir"
+                              brand-region="ex: Napa Valley"
+                              brand-country="ex: USA"
+                              brand-year="ex: 2012"
+                              ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.sparklingwine, columnDefs: venueMenuController.wineColumnDef }" class="grid"></div>
+                            </div>
                         </div>
-
                     </div>
-                      <add-wine wine-type='red'
-                                brand-placeholder="ex: Garry Farrel Pinot Noir"
-                                brand-desc="ex: he Bacigalupi family was among the first in the area to plant Pinot Noir and Chardonnay grapes in 1964, and garnered fame from the winning entry in the historic 1976 Paris Tasting. The Pinot Noir grapes for this release came from Frost Ranch, where the Wente clone produces classically elegant Russian River Pinot."
-                                brand-varietal="ex: Pinot Noir"
-                                brand-region="ex: Russian River Valley"
-                                brand-country="ex: USA"
-                                brand-year="ex: 2012"
-                                ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="5" heading="White Wine" select="venueMenuController.tabSelect('white')">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>White Wine Menu</h1>
+                </div>
+                <div class="container">
+                    <add-wine wine-type='white'
+                              brand-placeholder="ex: Garry Farrel Chardonnay"
+                              brand-desc="ex: The Bacigalupi family grapes garnered fame from the winning entry in the historic 1976 Paris Tasting. Some of the oldest vines from 1967 were sourced for our new Bacigalupi Chardonnay wine."
+                              brand-varietal="ex: Chardonnay"
+                              brand-region="ex: Russian River Valley"
+                              brand-country="ex: USA"
+                              brand-year="ex: 2013"
+                              ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
 
-                      <div class="row">
-                          <div class="col-lg-12">
-                              <div class="table-responsive">
-                                  <div id="admin_grid" ui-grid="{ data: venueMenuController.redwine, columnDefs: venueMenuController.wineColumnDef }" class="grid"></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-             </section>
-
-             <section id="cocktails">
-                  <div class="row">
-                    <div>
-                        <div class="page-header">
-                            <h1>Cocktails</h1>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.whitewine, columnDefs: venueMenuController.wineColumnDef  }" class="grid"></div>
+                            </div>
                         </div>
-
                     </div>
-                      <add-cocktail ctrl-fn="venueMenuController.updateGrid(value)"> </add-cocktail>
-                      <div class="row">
-                          <div class="col-lg-12">
-                              <div class="table-responsive">
-                                  <div id="admin_grid" ui-grid="{ data: venueMenuController.cocktails, columnDefs: venueMenuController.cocktailColumnDef }" class="grid"></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-             </section> <!-- //content -->
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="6" heading="Red Wine" select="venueMenuController.tabSelect('red')">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Red Wine Menu</h1>
+                </div>
+                <div class="container">
+                    <add-wine wine-type='red'
+                              brand-placeholder="ex: Garry Farrel Pinot Noir"
+                              brand-desc="ex: he Bacigalupi family was among the first in the area to plant Pinot Noir and Chardonnay grapes in 1964, and garnered fame from the winning entry in the historic 1976 Paris Tasting. The Pinot Noir grapes for this release came from Frost Ranch, where the Wente clone produces classically elegant Russian River Pinot."
+                              brand-varietal="ex: Pinot Noir"
+                              brand-region="ex: Russian River Valley"
+                              brand-country="ex: USA"
+                              brand-year="ex: 2012"
+                              ctrl-fn="venueMenuController.updateGrid(value)"></add-wine>
 
-   </div><!-- //container fluid -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.redwine, columnDefs: venueMenuController.wineColumnDef }" class="grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="7" heading="Wine On Tap" select="venueMenuController.tabSelect('tap')">
+        <div class="container-fluid $light-background-color">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Wine On Tap Menu</h1>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="8" heading="Cocktails" select="venueMenuController.tabSelect('cocktail')">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Cocktails Menu</h1>
+                </div>
+                <div class="container">
+                    <add-cocktail ctrl-fn="venueMenuController.updateGrid(value)"> </add-cocktail>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div id="admin_grid" ui-grid="{ data: venueMenuController.cocktails, columnDefs: venueMenuController.cocktailColumnDef }" class="grid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="8" heading="Recommended" select="venueMenuController.tabSelect('recommended')">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Recommended Menu</h1>
+                </div>
+                <div class="container">
 
-</div> <!-- //container -->
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>
+
+</div>
 <back-top scroll-speed=600 button-theme="dark"><i class="fa fa-chevron-up"></i></back-top>
