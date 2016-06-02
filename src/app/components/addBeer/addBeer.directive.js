@@ -24,11 +24,11 @@
         /** @ngInject */
         function AddBeerController(appGlobalVars, dataTemplates, menuService, blockUI, $log) {
             var vm = this;
-            vm.isToggled = false;
+            vm.isCollapsed = true;
             vm.dataLoading = false;
             vm.varietals = {
                 repeatSelect: null,
-                availableOptions: dataTemplates.getBeerVarietals()
+                availableOptions: dataTemplates.getBeerVarietals()//I should pull this from our DB
             };
             vm.product = {
                 v_id:'',
@@ -125,8 +125,7 @@
                 vm.product.active = val;
             }
             function toggleForm() {
-                vm.isToggled = !vm.isToggled;
-                $log.log('toggleForm ',vm.isToggled );
+                vm.isCollapsed = !vm.isCollapsed;
             }
         }
     }
