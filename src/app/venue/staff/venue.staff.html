@@ -5,11 +5,11 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <so-email-module header-label="Venue Admins" list-data="venueStaffController.venueAdmin"></so-email-module>
+            <so-email-module header-label="Venue Admins" is-editable="true" creation-type="3" venue-id="venueStaffController.venueId" list-data="venueStaffController.venueAdmin" ctrl-fn="venueStaffController.updateGrid(value)"></so-email-module>
         </div>
 
         <div class="col-lg-6">
-            <so-email-module header-label="Staff" list-data="venueStaffController.venueStaff"></so-email-module>
+            <so-email-module header-label="Staff" is-editable="true" creation-type="2" venue-id="venueStaffController.venueId" list-data="venueStaffController.venueStaff" ctrl-fn="venueStaffController.updateGrid(value)"></so-email-module>
     </div>
 </div> <!-- end row -->
 </div>
