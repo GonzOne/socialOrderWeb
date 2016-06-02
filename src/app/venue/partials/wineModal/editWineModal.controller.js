@@ -29,6 +29,24 @@
             var m_id = appGlobalVars.getMenuId();
             switch (wineType)
             {
+                case 'champagne':
+                    $log.log('getChampagneById ', m_id, ' ', wineId);
+                    menuService.getChampagneById(m_id, wineId).then(function (data) {
+                        $log.log('Returned champagne data :', data);
+                        vm.product.name =  data.name
+                        vm.product.glass_cost = data.glass_cost;
+                        vm.product.bottle_cost = data.bottle_cost;
+                        vm.product.varietal =  data.varietal;
+                        vm.product.region =  data.region;
+                        vm.product.country = data.country
+                        vm.product.year = data.year
+                        vm.product.desc = data.desc;
+                        vm.product.active = data.display;
+                    })
+                        .catch(function (error) {
+                            $log.log('Error:', error);
+                        });
+                    break;
                 case 'sparkling':
                     menuService.getSparklingWineById(m_id, wineId).then(function (data) {
                         $log.log('Returned sparkling wine data :', data);
@@ -120,6 +138,16 @@
             $log.log('EditWineModalController save')
             var m_Id = appGlobalVars.getMenuId();
             switch(wineType){
+                case 'champagne':
+                    menuService.updateChampagneById(m_Id, wineId, vm.product)
+                        .then(function () {
+                            $log.log('saved champagne data :');
+
+                        })
+                        .catch(function (error) {
+                            $log.log('saved champagne - Error:', error);
+                        });
+                    break;
                 case 'sparkling':
                     menuService.updateSparklingWineById(m_Id, wineId, vm.product)
                         .then(function () {
