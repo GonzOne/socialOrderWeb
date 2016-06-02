@@ -11,7 +11,7 @@
             restrict: 'E',
             templateUrl: 'app/components/createProfile/createProfile.html',
             scope: true,
-            controller: AddAdminController,
+            controller: CreateProfileController,
             controllerAs: 'vm',
             bindToController: {
                 creationType: '=',
@@ -23,10 +23,11 @@
         return directive;
 
         /** @ngInject */
-        function AddAdminController(profileService, venueService, appGlobalVars, dataTemplates, Auth, moment, blockUI, $log) {
+        function CreateProfileController(profileService, venueService, dataTemplates, Auth, moment, blockUI, $log) {
             var vm = this;
             vm.isToggled = false;
             vm.dataLoading = false;
+            $log.log('CreateProfileController : creationType:', vm.creationType, 'venueId ', vm.venueId, ' ctrlFn ', vm.ctrlFn);
             vm.user = {
                 firstName:'',
                 lastName:'' ,
@@ -56,7 +57,7 @@
                             vm.dataLoading = false;
                             vm.isToggled = false;
                             resetForm();
-                            vm.ctrlFn({value : 'admin'});
+                            vm.ctrlFn({val : 'admin'});
                         }, function (error) {
                             blockUI.stop();
                             vm.dataLoading = false;
@@ -82,7 +83,7 @@
                                 vm.dataLoading = false;
                                 vm.isToggled = false;
                                 resetForm();
-                                vm.ctrlFn({value : 'venue_staff'});
+                                vm.ctrlFn({val : 'venue_staff'});
                             }, function (error) {
                                 blockUI.stop();
                                 vm.dataLoading = false;
@@ -126,12 +127,13 @@
 
             function addVenueIDToAdminProfile(uid){
                 $log.log('createProfileDirective - addVenueIDToAdminProfile ', uid)
-                profileService.addVenueIdToAdminProfile(uid,appGlobalVars.getVenueId()).then(function () {
+                profileService.addVenueIdToAdminProfile(uid, vm.venueId).then(function () {
                     $log.log('addVenueIdToAdminProfile - Returned ok');
                     blockUI.stop();
                     vm.dataLoading = false;
                     vm.isToggled = false;
-                    vm.ctrlFn({value : 'venue_admin'});
+                    $log.log('WTF ', vm.ctrlFn);
+                    vm.ctrlFn({val : 'venue_admin'});
                     resetForm();
                 }, function (error) {
                     $log.log('Error:', error);
