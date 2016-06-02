@@ -10,6 +10,9 @@
         <div class="clearfix"></div>
     </div>
     <div uib-collapse="vm.isCollapsed">
+        <div class="mt-20" ng-show="vm.isEditable">
+            <create-profile creation-type='vm.creationType' venue-id="vm.venueId" ctrl-fn="vm.ctrlFn({value: val})"></create-profile>
+        </div>
         <div class="module-body">
             <div class="table-responsive">
                 <table class="table">

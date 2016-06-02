@@ -16,6 +16,9 @@
             bindToController: {
                 listData: '=',
                 headerLabel: '@',
+                isEditable: '=',
+                creationType: '=',
+                venueId: '=',
                 ctrlFn: '&'
             }
         };
@@ -23,9 +26,8 @@
         return directive;
 
         /** @ngInject */
-        function SoEmailModuleController($log) {
+        function SoEmailModuleController() {
             var vm = this;
-            $log.log('data', vm.listData);
             vm.isCollapsed = false;
             vm.toggleModule = toggleModule;
             function toggleModule() {
