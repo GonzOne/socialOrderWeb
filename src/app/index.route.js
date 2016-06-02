@@ -34,11 +34,8 @@
           url: '/admin',
           templateUrl: 'app/admin/app/app.html',
             resolve: {
-                loggedIn: function(AuthService){
+                isLoggedIn: function (AuthService) {
                     return AuthService.isLoggedIn();
-                },
-                isAdmin: function(AuthService){
-                    return AuthService.isAdmin();
                 }
             }
         })
@@ -75,11 +72,6 @@
                     function($stateParams, venueService) {
                         return venueService.getVenueById($stateParams.venueId);
                     }
-                ],
-                role: ['AuthService',
-                    function(AuthService) {
-                        return AuthService.getUserRole();
-                    }
                 ]
             }
 
@@ -94,11 +86,6 @@
                 menu: ['$stateParams', 'menuService',
                     function($stateParams, menuService) {
                         return menuService.getMenuById($stateParams.menuId);
-                    }
-                ],
-                role: ['AuthService',
-                    function(AuthService) {
-                        return AuthService.getUserRole();
                     }
                 ]
             }
@@ -157,11 +144,6 @@
                     venue: ['$stateParams', 'venueService',
                         function($stateParams, venueService) {
                             return venueService.getVenueById($stateParams.venueId);
-                        }
-                    ],
-                    role: ['AuthService',
-                        function(AuthService) {
-                            return AuthService.getUserRole();
                         }
                     ]
                 }
