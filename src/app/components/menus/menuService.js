@@ -287,6 +287,77 @@
             });
             return deferred.promise;
         }
+        /* CHAMPAGNE */
+        var addChampagne = function (m_id,data) {
+            var deferred = $q.defer();
+            $log.log('addChampagne to menu  ', m_id, ' champagne data ', data);
+            var swRef = venueMenusRef.child(m_id).child('menu').child('champagne').child('items');
+            var newChildRef = swRef.push();
+            data.key = newChildRef.key();
+            newChildRef.set(data, function (error) {
+                if (error) {
+                    $log.log('VenueService addChampagne : error ', error);
+                    deferred.reject(error);
+                } else {
+                    var k = newChildRef.key();
+                    $log.log('VenueService addChampagne : saved data', k);
+                    deferred.resolve(k);
+                }
+            })
+            return deferred.promise;
+
+        }
+        var getChampagneById = function (m_id, k) {
+            var deferred = $q.defer();
+            var swRef = venueMenusRef.child(m_id).child('menu').child('champagne').child('items').child(k);
+            swRef.once("value", function(snapshot) {
+                var data = snapshot.val();
+                deferred.resolve(data);
+            }, function (err) {
+                deferred.reject(err);
+            });
+            return deferred.promise;
+        }
+        var updateChampagneById  = function (m_id, k, inObj) {
+            var deferred = $q.defer();
+            var sWine = venueMenusRef.child(m_id).child('menu').child('champagne').child('items').child(k);
+            sWine.update(inObj, function (error) {
+                if (error) {
+                    $log.log('updateChampagneById : error ', error);
+                    deferred.reject(error);
+                } else {
+                    $log.log('updateChampagneById : saved data', k);
+                    deferred.resolve(k);
+                }
+            })
+            return deferred.promise;
+        }
+        var removeChampagneById = function (m_id, k) {
+            var sWine = venueMenusRef.child(m_id).child('menu').child('champagne').child('items').child(k);
+            sWine.remove();
+        }
+        var getChampagneByMenuId = function (key) {
+            $log.log('menu service - getChampagneByMenuId : key -', key)
+            var deferred = $q.defer();
+            var list = [];
+            var venueMenu = venueMenusRef.child(key).child('menu').child('champagne').child('items');
+            venueMenu.once("value", function(snapshot) {
+                $log.log('snapshot ', snapshot)
+                if(snapshot.val() !== null){
+                    snapshot.forEach(function(childSnapshot) {
+                        var key = childSnapshot.key();
+                        var childData = childSnapshot.val();
+                        list.push(childData)
+                        $log.log('key', key, 'child data ',childData )
+                    });
+                    deferred.resolve(list);
+                } else {
+                    $log.log('No items found');
+                    deferred.reject();
+                }
+            });
+            return deferred.promise;
+        }
         /* SPARKLING WINE */
         var addSparklingWine = function (m_id,data) {
             var deferred = $q.defer();
@@ -600,6 +671,13 @@
             updateBottleBeerById: updateBottleBeerById,
             removeBottleBeerById: removeBottleBeerById,
             getBottleBeersByMenuId: getBottleBeersByMenuId,
+            //
+            addChampagne: addChampagne,
+            getChampagneById: getChampagneById,
+            updateChampagneById: updateChampagneById,
+            removeChampagneById: removeChampagneById,
+            getChampagneByMenuId: getChampagneByMenuId,
+            //
             //
             addSparklingWine: addSparklingWine,
             getSparklingWineById: getSparklingWineById,
