@@ -64,6 +64,10 @@ open web browser :
 
 http://localhost:3000/
 
+### Build
+
+gulp build
+
 ## Contributing
 Sole contributor : Manuel Gonzalez
 ## License
